@@ -106,9 +106,7 @@ import {
 $ - creates a shorcut helper, instead of repeatedly writing: document.querySelector('')
 Example: $('#missionPlayButton') finds the dashboard Start Mission button */
 const $ = (selector) => document.querySelector(selector); /* Finds the first matching item in the HTML element that matches a selector */
-/* $$ - creates a second shortcut helper 
-Example: $$('.screen') finds Dashboard, Game Zone, Rewards, Coach, and game screens */
-const $$ = (selector) => [...document.querySelectorAll(selector)]; /* Finds all matching items in the HTML element and turns them into a normal JavaScript array, which is easier to loop through */
+
 
 /* Game Menu: Creates the list of games used by the automatic Game Zone card builder.
 Array is a list of objects that describes one game:
@@ -129,7 +127,7 @@ const games = [ /* First game object ThinkQuest, a quiz game module */
     description: 'Test your super-smart thinking skills.', /* Short description displayed under the card title */
     xp: 50, /* Amount of XP points shown on the Game Zone card for completing the game; only controls the number displayed on the card. The actual XP award logic is in thinkquest.js */
     artClass: 'thinkquest-card', /* CSS class that gives the ThinkQuest card art its special design */
-    art: `<span class="art-star">✦</span><span class="brain">🧠</span><span class="question-orb">?</span>`, /* Small piece of HTML stored as text that creates: a brain emoji, ? mark circle, and a glowing star (spark) art on ThinkQuest game card */
+    art: '<span class="art-star">✦</span><span class="brain">🧠</span><span class="question-orb">?</span>', /* Small piece of HTML stored as text that creates: a brain emoji, ? mark circle, and a glowing star (spark) art on ThinkQuest game card */
   },
   /* Second game object: HuMi's Memory Glitch; a matching card game */
   { id: 'memory', /* Unique identifier for the game name */
@@ -139,7 +137,7 @@ const games = [ /* First game object ThinkQuest, a quiz game module */
     description: 'Reconnect HuMi’s scrambled memories.', /* Short description displayed under the card title */
     xp: 50, /* Amount of  XP points shown on the Game Zone card for completing the game; only controls the number displayed on the card. The actual XP award logic is in memory-glitch.js */
     artClass: 'memory-preview-card', /* CSS class that gives the Memory Glitch card art its special design and keeps it separate from the actual flip-card game style  */
-    art: `<div class="mini-cards"><span>⚡</span><span>🤖</span><span>🧠</span><span>🔵</span></div><span class="art-star">✦</span>`, /* Small piece of HTML stored as text that creates: 2x2 group of mini cards: lightning bolt, robot, brain, and blue circle emoji's on the Memory Glitch game card  */
+    art: '<div class="mini-cards"><span>⚡</span><span>🤖</span><span>🧠</span><span>🔵</span></div><span class="art-star">✦</span>', /* Small piece of HTML stored as text that creates: 2x2 group of mini cards: lightning bolt, robot, brain, and blue circle emoji's on the Memory Glitch game card  */
   },
   /* Third game object: Catch the Knowledge, a falling objects basket catch game */
   { id: 'catch', /* Unique identifier for the game name */
@@ -149,7 +147,7 @@ const games = [ /* First game object ThinkQuest, a quiz game module */
     description: 'Catch the facts. Dodge the glitches.', /* Short description displayed under the card */
     xp: 35, /*  Amount of  XP points shown on the Game Zone card for completing the game; only controls the number displayed on the card. The actual XP award logic is in catch-knowledge.js */
     artClass: 'catch-card', /* CSS class that gives the Catch the Knowledge card art its special design */
-    art: `<span class="basket">🧺</span><span class="falling-item item-one">💡</span><span class="falling-item item-two">✓</span><span class="falling-item item-three">⭐</span>`, /* Small piece of HTML stored as text that creates: a basket, light bulb, checkmark and star emoji's on the Catch the Knowledge game card */
+    art: '<span class="basket">🧺</span><span class="falling-item item-one">💡</span><span class="falling-item item-two">✓</span><span class="falling-item item-three">⭐</span>', /* Small piece of HTML stored as text that creates: a basket, light bulb, checkmark and star emoji's on the Catch the Knowledge game card */
   },
 ];
 
@@ -179,16 +177,22 @@ function routeTo(route) {
   show a helpful warning in the browser Console and falls back to the Dashboard. If the ID is wrong, it won't accidentally hide the whole website */
   let selectedScreen = document.getElementById(requestedScreenId);
 
-  /* Displays the requested screen. If the screen or ID is missing from index.html, shows a helpful warning message in the browser Console and falls back to the Dashboard.
-    console.warn(`HuMAI route could not find #${requestedScreenId}. Returning to dashboard instead.`); /* Message that helps find any misspelled ID's */ 
+  /* Displays the requested screen. If the screen or ID is missing from index.html, shows a helpful warning message in the browser Console and falls back to the Dashboard */
+  if (!selectedScreen) { 
+    console.warn(`HuMAI route could not find #${requestedScreenId}. Returning to dashboard instead.`); /* Message that helps find any misspelled ID's */
+    /* Finds the one HTML element that has the dashboard screen id, which I'm using as my fallback fi a requested screen cannot be found */
     selectedScreen = document.getElementById('dashboard-screen');
-  }
-
+  } 
   /* If the dashboard is missing, something major is wrong with index.html; logs a clear error and stops the function */
   if (!selectedScreen) {
     console.error('HuMAI cannot find any screen. Check that index.html has id="dashboard-screen".');
     return;
-}
+} /* Finds every screen using .screen class, removes active from all of them, hiding the old page */
+  document.querySelectorAll('.screen').forEach((screen) => {screen.classList.remove('active');
+  });
+
+  /* Adds the active class only to the requested screen. CSS makes this screen visible */
+  selectedScreen.classList.add('active');
 
   /* Finds every section that has class="screen" because these are website pages that can be shown or hidden; had previous issues with this not working the way I intended it to */
   const allScreens = document.querySelectorAll('.screen');
@@ -197,9 +201,6 @@ function routeTo(route) {
   for (let i = 0; i < allScreens.length; i +=1) { /* i starts at 0, loop continues while i is less than the number of screens, and adds one to i after each loop */
     allScreens[i].classList.remove('active'); /* Removes the active class from every screen. CSS hides inacitve screens */
   }
-
-  /* Adds the active class only to the requested screen. CSS makes this screen visible */
-  selectedScreen.classList.add('active');
 
   /* Adds temporary message to the browser Console during testing. Confirms that JavaScript is recieving clicks and shows which screen it is trying to display */
   console.log('HuMAI route opened: ', selectedScreen.id);
@@ -225,22 +226,26 @@ function routeTo(route) {
   }
    /* If the user opened the Game Zone screen, it builds or refreshes the Game Zone cards using the games array */
   if (route === 'games') { renderGameGrid(games); /* renderGameGrid(games) sends the complete games list to ui.js, which creates the card HTML inside #gamesGrid */
-  }
+  } 
 
   /* Scrolls the selected screen into view */
   selectedScreen.scrollIntoView({ behavior: 'smooth', block: 'start',
   });
+}
 
 /* Game Launcher - function that launches the selected game module on the current page. User remains in the same tab, 
 app hides the old module, opens the correct game screen, and then starts or resets the game's game logic*/
 function launchGame(gameName) {
+  state.activeGame = gameName; /* Saves the shared state information of the current game */
+  routeTo(gameName); /* Starts the correct game after its screen is visible */
   /* Writes a helpful message in the browser Console during testing */
   console.log('Launching game:', gameName);
   /* Shows the selected game screen first */
-  routeTo(gameName); /* Starts the correct game after its screen is visible */
-  
+ 
   if (gameName === 'memory') { /* If the game name is "memory", start Memory Glitch. HuMi's Memory Glitch: Shows the matching game screen, then starts a new shuffled card round */
-    startMemoryGlitch(); /* Starts a fresh shuffled round of the Memory Glitch matching game immediately */
+    setTimeout(() => { /* waits a very short amount of time before running code */
+      startMemoryGlitch(); /* Starts a fresh shuffled round of the Memory Glitch matching game immediately */
+    }, 50); /* Waits a short delay of 50ms to give the browser time to make the Memory Glitch */
     return; /* Stops here so the code does not continue checking the other games */
   }
   if (gameName === 'thinkquest') { /* If the game name is "thinkquest", start ThinkQuest Quiz */
@@ -252,9 +257,10 @@ function launchGame(gameName) {
     resetCatchKnowledge(); /* Resets score, timer, basket location, and start game overlay */
     return; /* Stops here because the correct game has been handled */
   }
+}
   /* Message notification only appears if a misspelled game ID is passed into the function */
   showToast('Mission module not found. Please choose a listed game.');
-}
+
 
 /* Function that sets up all event listeners for the website such as buttons & game card clicks, submitting the chat form and keys the user presses. Runs once when the webpage first loads */
 function setupEvents() {
@@ -263,17 +269,20 @@ function setupEvents() {
   document.addEventListener('click', (event) => { 
     const routeButton = event.target.closest('[data-route]'); /* Checks whether the used clicked a navigation button or something inside of it, an element that uses data-route like "dashboard", "games", "rewards", or "coach" */
     if (routeButton) { routeTo(routeButton.dataset.route); /* If a route button was found, open to the matching screen */
-    return;} /* Stops here so one click cannot also accidentally trigger another action */
-
+    return; /* Stops here so one click cannot also accidentally trigger another action */
+  } 
+    
     /* Checks whether the user clicked a game button or part of a game card */
     const gameButton = event.target.closest('[data-game]'); 
     if (gameButton) {launchGame(gameButton.dataset.game); /* If a game button was found, launch that game */
-    return;} /* Exits the game */
+    return;  /* Exits the game */
+  }
 
     /* Checks whether the user clicked on a Memory Glitch matching tile */
     const memoryCard = event.target.closest('[data-memory-card]');
     if (memoryCard) { selectMemoryCard(memoryCard.dataset.memoryCard); /* If a Memory Glitch tile was clicked, send its card number to the Memory Glitch game module */
-    return;} /* Stops here so the click cdoesn't trigger another part of the listener */
+    return; /* Stops here so the click cdoesn't trigger another part of the listener */
+  } 
 
     /* Checks whether the user clicked a ThinkQuest answer button */
     const quizAnswer = event.target.closest('[data-thinkquest-answer]');
@@ -369,7 +378,7 @@ function setupEvents() {
   the user is viewing the Catch The Knowledge screen */
   document.addEventListener('keydown', (event) => { /* Listens for any key press on the page */
     const catchScreenIsVisible = $('#catch-screen')?.classList.contains('active'); /* Checks whether the Catch the Knowledge screen is currently visible */
-    if (!catchScreenIsVisible) return; /* If Catch the Knowledge screen is not visible, stop here */
+    if (!catchScreenIsVisible)  return; /* If Catch the Knowledge screen is not visible, stop here */
     if (event.key === 'ArrowLeft') { /* If the user pressed the left arrow key */
       event.preventDefault(); /* Prevents the page from scrolling sideways */
       moveKnowledgeBasket(-1); } /* Move the basket left */
