@@ -1,0 +1,2976 @@
+/* HuMAI Academy — Hero Command Center Style Sheet (Avengers-inspired)
+-------------------------------------------------------------------------------------------------------------
+Avengers-inspired CSS for the HuMAI Academy one-page web app, designed to evoke a superhero command center
+aesthetic. This style sheet is intended for educational purposes and does not use any copyrighted Marvel or Avengers content.
+  * Superhero command-center energy
+  * Marvel UniverseDark, cinematic backgrounds:
+    - Cyan holograms, violet power, gold XP, green success, red glitches
+    - Self created characters and logos
+    - Avengers-style panels, cards, and buttons
+  * 7 major screens modules; designed to be a one-page web app with JavaScript routing, no need for refreshing the page:
+    1.  Dashboard
+    2.  Game Zone
+    3.  Rewards
+    4.  HuMi Coach
+    5.  Memory Glitch
+    6.  ThinkQuest
+    7.  Catch the Knowledge
+Co-collaborated with my son for Gamer Design style, and Perplexity for CSS elements and color palette. */
+
+/* Shared, colors, shadows, & design settings */
+:root {
+  --space-black: #07111f;
+  --deep-navy: #0b1d38;
+  --navy-panel: #102b50;
+  --steel-blue: #1c426f;
+
+  --hero-cyan: #39dcff;
+  --hero-blue: #3979ff;
+  --plasma-purple: #9b6dff;
+  --hero-red: #ff516e;
+  --energy-gold: #ffd34f;
+  --victory-green: #57e6aa;
+
+  --white: #ffffff;
+  --soft-white: #edf7ff;
+  --muted-blue: #abc4dd;
+  --line-glow: rgba(82, 207, 255, 0.28);
+
+  /* Names used throughout the HuMAI Academy layout */
+  --ink: #edf7ff;
+  --muted: #abc4dd;
+  --navy: #07111f;
+  --blue: #39dcff;
+  --sky: #69e5ff;
+  --purple: #9b6dff;
+  --pink: #ff6da8;
+  --orange: #ff9e54;
+  --yellow: #ffd34f;
+  --mint: #57e6aa;
+  --cream: #07111f;
+  --panel: #102b50;
+  --line: rgba(115, 210, 255, 0.24);
+  --danger: #ff516e;
+
+  --shadow: 0 18px 45px rgba(0, 0, 0, 0.42);
+  --soft-shadow: 0 9px 24px rgba(0, 0, 0, 0.28);
+}
+
+/* Reset & Base Page Styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 220px;
+  scroll-behavior: smooth;
+}
+
+/* Layered gradients and subtle grid for page background; futuristic superhero command center */
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 15% 15%, rgba(57, 220, 255, 0.14), transparent 25%),
+    radial-gradient(circle at 85% 5%, rgba(155, 109, 255, 0.16), transparent 28%),
+    radial-gradient(circle at 55% 85%, rgba(57, 121, 255, 0.13), transparent 32%),
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    url("images/cosmos.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: "Nunito", Arial, sans-serif;
+  font-weight: 700;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 4px solid rgba(57, 220, 255, 0.55);
+  outline-offset: 3px;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--soft-white);
+  font-family: "Baloo 2", "Nunito", sans-serif;
+  line-height: 1.02;
+}
+
+h1 {
+  font-size: clamp(2.35rem, 4vw, 4.15rem);
+  margin-bottom: 0.65rem;
+}
+
+h2 {
+  font-size: clamp(1.6rem, 2.5vw, 2.25rem);
+  margin-bottom: 0.45rem;
+}
+
+h3 {
+  font-size: 1.45rem;
+  margin-bottom: 0.35rem;
+}
+
+p {
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* Outside container for the entire HuMAI Academy Interface, including the top navigation bar and all screens,
+makes sure the app fills at least the full height of the browswer and prevents the visual effects from creating sideways scrolling */
+.app-interface-layer {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Top Navigation links / HERO COMMAND CENTER Bar */
+.topbar {
+  height: 78px;
+  padding: 0 clamp(1rem, 4vw, 4.5rem);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background: rgba(7, 17, 31, 0.9);
+  border-bottom: 1px solid var(--line-glow);
+  position: sticky;
+  z-index: 30;
+  top: 0;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 9px 26px rgba(0, 0, 0, 0.22);
+}
+
+.HuMAI {
+  border: 0;
+  background: none;
+  color: var(--soft-white);
+  font-family: "Baloo 2", sans-serif;
+  font-size: 1.45rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  white-space: nowrap;
+  text-shadow: 0 0 14px rgba(57, 220, 255, 0.45);
+}
+
+.HuMAI em {
+  color: var(--hero-cyan);
+  font-style: normal;
+}
+
+.HuMAI-bot {
+  font-size: 1.7rem;
+  filter: drop-shadow(0 0 8px rgba(57, 220, 255, 0.55));
+}
+
+.desktop-nav {
+  display: flex;
+  gap: 0.2rem;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-link {
+  background: none;
+  border: 1px solid transparent;
+  color: var(--muted-blue);
+  padding: 0.55rem 0.85rem;
+  font-size: 0.95rem;
+  border-radius: 10px;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--white);
+  background: rgba(57, 220, 255, 0.1);
+  border-color: rgba(57, 220, 255, 0.35);
+  box-shadow: inset 0 0 16px rgba(57, 220, 255, 0.1);
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-left: auto;
+}
+
+.streak-chip,
+.xp-chip {
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+  background: rgba(255, 183, 58, 0.1);
+  border: 1px solid rgba(255, 211, 79, 0.3);
+  padding: 0.46rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.83rem;
+  color: #ffe3a1;
+  white-space: nowrap;
+}
+
+.xp-chip {
+  background: rgba(255, 211, 79, 0.12);
+  border-color: rgba(255, 211, 79, 0.42);
+  color: #fff3b8;
+  box-shadow: 0 0 14px rgba(255, 211, 79, 0.1);
+}
+
+.icon-button,
+.avatar-button {
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(57, 220, 255, 0.26);
+  background: rgba(57, 220, 255, 0.07);
+  color: var(--soft-white);
+  border-radius: 50%;
+  font-size: 1rem;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.2);
+}
+
+.icon-button:hover,
+.avatar-button:hover {
+  background: rgba(57, 220, 255, 0.17);
+  box-shadow: 0 0 14px rgba(57, 220, 255, 0.22);
+}
+
+.avatar-button {
+  background: linear-gradient(135deg, var(--plasma-purple), var(--hero-blue));
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  font-weight: 900;
+}
+
+.mobile-menu,
+.mobile-nav {
+  display: none;
+}
+
+.mobile-nav {
+  background: var(--deep-navy);
+  border-bottom: 1px solid var(--line);
+  box-shadow: var(--soft-shadow);
+}
+
+.mobile-nav button {
+  color: var(--soft-white);
+}
+
+/* Game module container for shared page content, screen, button, & panel styles. 
+Centers playable game modules inside the main section (Memory Glitch, ThinkQuest, and Catch the Knowledge */
+main {
+  max-width: 1400px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: clamp(1.2rem, 3vw, 3.1rem) clamp(1rem, 4vw, 4.5rem) 4rem;
+}
+
+/* Each area of the one page app is hidden until JavaScript activates it */
+.screen {
+  display: ;
+  scroll-margin-top: 90px;
+  animation: screen-in 0.35s ease both;
+}
+
+/* Shows only the selected screen. Does not force every screen to full up the full browser height */
+.screen.active {
+  display: block !important;
+  padding-top: 1.75rem;
+  padding-bottom: 3.5rem;
+}
+
+@keyframes screen-in {
+  from {
+    opacity: 0;
+    transform: translateY(9px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.eyebrow {
+  color: var(--hero-cyan);
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  font-weight: 900;
+  margin-bottom: 0.45rem;
+  text-shadow: 0 0 10px rgba(57, 220, 255, 0.35);
+}
+
+.primary-button,
+.secondary-button,
+.text-button {
+  border: 0;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+/* Gold button for the main action sequenceon a screen, such as launching a mission */
+.primary-button {
+  padding: 0.83rem 1.15rem;
+  color: #07111f;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--energy-gold), #ffb54a);
+  box-shadow: 0 0 0 1px rgba(255, 220, 108, 0.3), 0 8px 22px rgba(255, 190, 63, 0.27);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.035em;
+}
+
+.primary-button:hover {
+  transform: translateY(-2px) scale(1.02);
+  background: linear-gradient(135deg, #ffe47b, var(--energy-gold));
+  box-shadow: 0 0 22px rgba(255, 211, 79, 0.65), 0 12px 26px rgba(0, 0, 0, 0.28);
+}
+
+.primary-button span {
+  margin-left: 0.5rem;
+}
+
+.primary-button.small {
+  font-size: 0.91rem;
+  white-space: nowrap;
+}
+
+/* Cyan button for helper actions, such as hints or asking HuMi */
+.secondary-button {
+  padding: 0.78rem 1.05rem;
+  color: var(--hero-cyan);
+  border: 1px solid rgba(57, 220, 255, 0.42);
+  border-radius: 12px;
+  background: rgba(57, 220, 255, 0.08);
+  box-shadow: inset 0 0 14px rgba(57, 220, 255, 0.06);
+  font-weight: 900;
+}
+
+.secondary-button:hover {
+  transform: translateY(-2px);
+  color: var(--white);
+  background: rgba(57, 220, 255, 0.18);
+  box-shadow: 0 0 18px rgba(57, 220, 255, 0.28);
+}
+
+.text-button {
+  background: none;
+  color: var(--hero-cyan);
+  font-size: 0.92rem;
+  font-weight: 900;
+  padding: 0.3rem 0;
+  text-shadow: 0 0 9px rgba(57, 220, 255, 0.25);
+}
+
+.text-button:hover {
+  color: var(--white);
+  transform: translateX(2px);
+}
+
+/* Shared Avengers styled command-center panel look used across the website */
+.daily-mission-card,
+.game-card,
+.progress-card,
+.humi-tip-card,
+.reward-summary article,
+.badge,
+.coach-panel,
+.memory-game-wrap,
+.quiz-wrap,
+.catch-wrap,
+.game-stats span {
+  background: linear-gradient(145deg, rgba(25, 63, 105, 0.94), rgba(10, 29, 56, 0.97));
+  border: 1px solid rgba(90, 212, 255, 0.26);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 15px 32px rgba(0, 0, 0, 0.28);
+   position: relative;
+  overflow: hidden;
+}
+
+.daily-mission-card,
+.progress-card,
+.coach-panel,
+.memory-game-wrap,
+.quiz-wrap,
+.catch-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glowing energy line at the top of major mission panels */
+.daily-mission-card::before,
+.progress-card::before,
+.coach-panel::before,
+.memory-game-wrap::before,
+.quiz-wrap::before,
+.catch-wrap::before {
+  content: "";
+  position: absolute;
+  left: 7%;
+  right: 7%;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--hero-cyan), var(--plasma-purple), transparent);
+  box-shadow: 0 0 15px var(--hero-cyan);
+}
+
+/*  HuMAI Academy Dashboard / HERO COMMAND CENTER */
+.dashboard-hero {
+  min-height: 320px;
+  border-radius: 29px;
+  padding: clamp(1.6rem, 4vw, 3.3rem);
+  overflow: hidden;
+  position: relative;
+  background:
+    radial-gradient(circle at 78% 48%, rgba(57, 220, 255, 0.18), transparent 25%),
+    radial-gradient(circle at 60% 18%, rgba(155, 109, 255, 0.18), transparent 30%),
+    linear-gradient(125deg, rgba(7, 22, 48, 0.74), rgba(14, 37, 74, 0.66) 55%, rgba(41, 19, 72, 0.68));
+  border: 1px solid rgba(91, 211, 255, 0.28);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 20px 40px rgba(0, 0, 0, 0.3);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(230px, 0.8fr);
+  align-items: center;
+}
+
+/* Avengers styled technical grid inside the Hero mission-briefing */
+.dashboard-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.26;
+  background:
+    linear-gradient(90deg, transparent 49%, rgba(87, 230, 170, 0.2) 50%, transparent 51%),
+    linear-gradient(0deg, transparent 49%, rgba(57, 220, 255, 0.2) 50%, transparent 51%);
+  background-size: 36px 36px;
+  pointer-events: none;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.dashboard-hero::after {
+  content: "";
+  position: absolute;
+  width: 330px;
+  height: 330px;
+  right: -150px;
+  bottom: -175px;
+  border-radius: 50%;
+  background: rgba(57, 220, 255, 0.09);
+  border: 1px solid rgba(57, 220, 255, 0.16);
+}
+
+/* Keeps the greeting and buttons on the left side of the dashboard hero panel in it's own grid column */
+.hero-copy {
+  position: relative;
+  z-index: 5;
+  min-width: 0;
+}
+
+.humi-greeting-mascot {
+  position: static;
+  width: clamp(58px,7vw, 92px);
+  height: auto;
+  flex: 0 0 auto;
+  object-fit: contain;
+  filter: 
+  drop-shadow(0 0 9px rgba(57, 220, 255, 0.72)) 
+  drop-shadow(0 8px 8px rgba(0, 0, 0, 0.32));
+  animation: humi-greeting-float 3.5s ease-in-out infinite;
+}
+
+.hero-message {
+  font-size: 1.06rem;
+  margin-bottom: 1.35rem;
+  max-width: 520px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+/* Keeps the scaterred pieces of the HuMi robot together on the the right side of the dashboard hero panel in it's own grid column */
+.humi-stage {
+  min-height: 235px;
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Larger CSS built version of the HuMi robot character for the dashboard hero panel, right side */
+.humi-stage .humi {
+  position: relative;
+  left: 0;
+  top: auto;
+  width: 105px;
+  height: 175px;
+  transform: scale(1.15);
+  transform-origin: center;
+  animation: humi-stage-float 3.5s ease-in-out infinite;
+  filter: 
+  drop-shadow(0 0 15px rgba(57, 220, 255, 0.4)) 
+  drop-shadow(0 15px 9px rgba(0, 0, 0, 0.32));
+}
+
+@keyframes humi-stage-float {
+  0% 
+  100% {
+    transform: translateY(0) scale(1.15);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.15);
+  }
+}
+
+@keyframes humi-greeting-float {
+  0% 
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(-9px) rotate(1deg);
+  }
+}
+
+.antenna {
+  width: 7px;
+  height: 22px;
+  position: absolute;
+  background: var(--plasma-purple);
+  border-radius: 8px;
+  top: -7px;
+  left: 49px;
+  transform: rotate(-8deg);
+}
+
+.antenna i {
+  position: absolute;
+  background: var(--energy-gold);
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  left: -5px;
+  top: -7px;
+  box-shadow: 0 0 0 5px rgba(255, 211, 79, 0.22), 0 0 15px var(--energy-gold);
+}
+
+.humi-head {
+  width: 105px;
+  height: 76px;
+  border-radius: 35px 35px 31px 31px;
+  background: linear-gradient(145deg, #a087ff, #416fe4);
+  border: 5px solid rgba(232, 250, 255, 0.95);
+  position: relative;
+  z-index: 2;
+}
+
+.face {
+  position: absolute;
+  left: 14px;
+  top: 18px;
+  width: 66px;
+  height: 39px;
+  border-radius: 18px;
+  background: #07111f;
+  color: white;
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 10px rgba(57, 220, 255, 0.25);
+}
+
+.eye {
+  font-size: 17px;
+  line-height: 1;
+  color: #75ecff;
+  text-shadow: 0 0 8px #75ecff;
+}
+
+.mouth {
+  position: absolute;
+  bottom: 1px;
+  color: #fff;
+  font-size: 19px;
+}
+
+.humi-body {
+  width: 69px;
+  height: 72px;
+  position: absolute;
+  left: 18px;
+  top: 65px;
+  z-index: 1;
+  background: linear-gradient(145deg, #58d9ff, #506ff4);
+  border: 5px solid rgba(232, 250, 255, 0.95);
+  border-radius: 23px 23px 29px 29px;
+  display: grid;
+  place-items: center;
+}
+
+.core {
+  width: 27px;
+  height: 27px;
+  display: grid;
+  place-items: center;
+  background: var(--energy-gold);
+  border-radius: 50%;
+  font-size: 16px;
+  box-shadow: 0 0 14px var(--energy-gold);
+}
+
+.humi-arm {
+  width: 37px;
+  height: 16px;
+  border-radius: 17px;
+  position: absolute;
+  top: 92px;
+  background: #657ff3;
+  border: 4px solid rgba(232, 250, 255, 0.95);
+  z-index: 0;
+}
+
+.left-arm {
+  left: -10px;
+  transform: rotate(29deg);
+}
+
+.right-arm {
+  right: -10px;
+  transform: rotate(-29deg);
+}
+
+.humi-leg {
+  position: absolute;
+  width: 16px;
+  height: 35px;
+  border-radius: 12px;
+  background: #687ef0;
+  border: 4px solid rgba(232, 250, 255, 0.95);
+  bottom: 0;
+}
+
+.left-leg {
+  left: 29px;
+}
+
+.right-leg {
+  right: 29px;
+}
+
+.humi-large {
+  transform: scale(1.25);
+  transform-origin: center;
+}
+
+.spark {
+  position: absolute;
+  z-index: 3;
+  color: var(--energy-gold);
+  font-size: 1.8rem;
+  animation: twinkle 1.8s ease-in-out infinite;
+  text-shadow: 0 0 10px currentColor;
+}
+
+.spark-one {
+  top: 20px;
+  left: 12%;
+}
+
+.spark-two {
+  bottom: 15px;
+  right: 12%;
+  color: var(--hero-cyan);
+  animation-delay: 0.3s;
+}
+
+.spark-three {
+  top: 44%;
+  right: 6%;
+  color: var(--pink);
+  animation-delay: 0.8s;
+}
+
+@keyframes twinkle {
+  50% {
+    opacity: 0.35;
+    transform: scale(0.7) rotate(25deg);
+  }
+}
+
+.speech-bubble {
+  position: absolute;
+  right: 2%;
+  top: -28px;
+  z-index: 6;
+  padding: 0.75rem 0.9rem;
+  max-width: 145px;
+  background: rgba(235, 250, 255, 0.95);
+  color: #0c3055;
+  font-size: 0.83rem;
+  border-radius: 17px 17px 17px 4px;
+  box-shadow: 0 0 16px rgba(57, 220, 255, 0.38), var(--soft-shadow);
+}
+
+.bubble-tail {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  bottom: -6px;
+  left: 12px;
+  transform: rotate(45deg);
+  background: rgba(235, 250, 255, 0.95);
+}
+
+.daily-mission-card {
+  margin-top: 1.6rem;
+  border-radius: 22px;
+  padding: 1.15rem 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.mission-icon {
+  flex: 0 0 60px;
+  width: 60px;
+  height: 60px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  font-size: 1.9rem;
+  background: linear-gradient(145deg, rgba(155, 109, 255, 0.34), rgba(57, 220, 255, 0.2));
+  border: 1px solid rgba(155, 109, 255, 0.45);
+  box-shadow: 0 0 16px rgba(155, 109, 255, 0.16);
+}
+
+.mission-content {
+  flex: 1;
+}
+
+.mission-content h2 {
+  font-size: 1.3rem;
+  margin-bottom: 0.1rem;
+}
+
+.mission-content p {
+  font-size: 0.9rem;
+  margin-bottom: 0.45rem;
+}
+
+.mission-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  color: var(--muted-blue);
+  font-size: 0.76rem;
+}
+
+.section-heading {
+  margin-top: 2.6rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.section-heading h2 {
+  margin-bottom: 0;
+}
+
+.section-heading.simple {
+  margin-top: 0;
+}
+
+/* Game Grid Zone cards */
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+
+.game-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  background: linear-gradient(155deg, #14365d, #091b35);
+  border: 1px solid rgba(95, 207, 255, 0.28);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 14px 28px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.game-card:hover {
+  transform: translateY(-7px);
+  border-color: rgba(111, 230, 255, 0.65);
+  box-shadow: 0 0 0 1px rgba(57, 220, 255, 0.25), 0 0 28px rgba(57, 220, 255, 0.16), 0 20px 38px rgba(0, 0, 0, 0.36);
+}
+
+.game-card-art {
+  min-height: 150px;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+/* Each game has its own original "power type" color */
+.thinkquest-card .game-card-art {
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.25), transparent 22%),
+    linear-gradient(135deg, #6a3ee7, #241154);
+    position: relative;
+    overflow: hidden;
+}
+
+.memory-card .game-card-art {
+  background:
+    radial-gradient(circle at 60% 25%, rgba(255, 255, 255, 0.25), transparent 20%),
+    linear-gradient(135deg, #0eafdb, #173e9d);
+    position: relative;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
+/* Memory Glitch card grid */
+#memory-game-board {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(70px, 120px));
+  justify-content: center;
+  gap: 16px;
+  margin: 32px auto;
+}
+
+/* Each card is a button - works by mouse, touch, and keyboard */
+.memory-card {
+  width: 100px;
+  height: 120px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  perspective: 900px;
+}
+
+/* The rotating part of the card */
+.memory-card-inner {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.35s ease;
+  transform-style: preserve-3d;
+}
+
+/* Adding .flipped in JavaScript rotates the inner card */
+.memory-card.flipped .memory-card-inner,
+.memory-card.matched .memory-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Card front and back - same area */
+.memory-card-face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  font-size: 2.2rem;
+  font-weight: 800;
+}
+
+/* Hidden side, visible before the learner selects the card */
+.memory-card-back {
+  color: #d9f8ff;
+  background: linear-gradient(135deg, #213d75, #101b44);
+  border: 2px solid #55e8ff;
+  box-shadow: 0 0 18px rgba(85, 232, 255, 0.35);
+}
+
+/* Symbol side, visible only after the card is rotated */
+.memory-card-front {
+  color: #071121;
+  background: linear-gradient(135deg, #f6fbff, #80f6ff);
+  border: 2px solid #ffffff;
+  transform: rotateY(180deg);
+}
+
+/* Matched cards remain revealed and look completed */
+.memory-card.matched {
+  cursor: default;
+}
+
+.memory-card.matched .memory-card-front {
+  background: linear-gradient(135deg, #e3ffbf, #67e99b);
+  box-shadow: 0 0 22px rgba(103, 233, 155, 0.65);
+}
+
+/* Keyboard accessibility */
+.memory-card:focus-visible {
+  outline: 4px solid #ffe66d;
+  outline-offset: 4px;
+}
+
+/* Keep cards usable on narrow phone screens */
+@media (max-width: 560px) {
+  #memory-game-board {
+    grid-template-columns: repeat(3, minmax(72px, 1fr));
+    gap: 12px;
+  }
+
+  .memory-card {
+    width: 100%;
+    height: 100px;
+  }
+  .memory-card.flipped .memory-card-inner {
+  transform: rotateY(180deg);
+}
+}
+
+.catch-card .game-card-art {
+  background:
+    radial-gradient(circle at 50% 24%, rgba(255, 255, 255, 0.25), transparent 20%),
+    linear-gradient(135deg, #fa7e3e, #9b1f49);
+}
+
+.brain {
+  font-size: 5rem;
+  transform: rotate(-8deg);
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.38));
+}
+
+.question-orb {
+  font-family: "Baloo 2";
+  font-size: 2.1rem;
+  font-weight: 800;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  background: var(--energy-gold);
+  color: #493185;
+  border-radius: 50%;
+  position: absolute;
+  right: 23%;
+  bottom: 24px;
+  box-shadow: 0 0 16px rgba(255, 211, 79, 0.55);
+}
+
+.art-star {
+  position: absolute;
+  top: 17px;
+  right: 14%;
+  font-size: 1.8rem;
+  color: #fff5af;
+  text-shadow: 0 0 12px #fff5af;
+}
+
+.mini-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 48px);
+  gap: 8px;
+  transform: rotate(-6deg);
+}
+
+.mini-cards span {
+  height: 48px;
+  display: grid;
+  position: relative;
+  place-items: center;
+  font-size: 1.4rem;
+  background: rgba(237, 252, 255, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 11px;
+  box-shadow: 0 6px 0 rgba(6, 55, 131, 0.24), 0 0 10px rgba(255, 255, 255, 0.18);
+}
+
+.basket {
+  font-size: 4.6rem;
+  position: absolute;
+  bottom: 17px;
+  filter: drop-shadow(0 7px 3px rgba(61, 20, 16, 0.28));
+}
+
+.falling-item {
+  position: absolute;
+  font-size: 1.5rem;
+  animation: fall-bounce 2.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.4));
+}
+
+.item-one {
+  top: 23px;
+  left: 25%;
+}
+
+.item-two {
+  top: 42px;
+  right: 27%;
+  animation-delay: 0.7s;
+}
+
+.item-three {
+  top: 11px;
+  right: 13%;
+  animation-delay: 1.1s;
+}
+
+@keyframes fall-bounce {
+  50% {
+    transform: translateY(17px) rotate(16deg);
+  }
+}
+
+.game-card-body {
+  padding: 1.1rem 1.15rem 1rem;
+}
+
+.game-tag {
+  font-size: 0.63rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  padding: 0.28rem 0.52rem;
+  border-radius: 999px;
+}
+
+.purple {
+  background: rgba(155, 109, 255, 0.18);
+  color: #cdbaff;
+  border: 1px solid rgba(155, 109, 255, 0.3);
+}
+
+.blue {
+  background: rgba(57, 220, 255, 0.12);
+  color: #9eeeff;
+  border: 1px solid rgba(57, 220, 255, 0.3);
+}
+
+.orange {
+  background: rgba(255, 158, 84, 0.14);
+  color: #ffd09f;
+  border: 1px solid rgba(255, 158, 84, 0.32);
+}
+
+.game-card-body h3 {
+  margin-top: 0.65rem;
+}
+
+.game-card-body p {
+  font-size: 0.87rem;
+  min-height: 39px;
+  margin-bottom: 0.85rem;
+}
+
+.game-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #ffe28a;
+  font-size: 0.8rem;
+}
+
+.round-play {
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(57, 220, 255, 0.4);
+  border-radius: 50%;
+  background: rgba(57, 220, 255, 0.1);
+  color: var(--hero-cyan);
+  padding-left: 3px;
+  font-size: 0.83rem;
+  box-shadow: inset 0 0 10px rgba(57, 220, 255, 0.08);
+}
+
+.round-play:hover {
+  background: var(--hero-cyan);
+  color: #07111f;
+  box-shadow: 0 0 16px rgba(57, 220, 255, 0.55);
+}
+
+.dashboard-lower {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 1.2rem;
+  margin-top: 1.2rem;
+}
+
+.progress-card,
+.humi-tip-card {
+  border-radius: 22px;
+  padding: 1.35rem;
+  align-items: flex-start;
+}
+
+.progress-card-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.progress-card h2 {
+  font-size: 1.35rem;
+}
+
+.level-icon {
+  width: 47px;
+  height: 47px;
+  display: grid;
+  place-items: center;
+  background: rgba(155, 109, 255, 0.18);
+  border: 1px solid rgba(155, 109, 255, 0.3);
+  border-radius: 15px;
+  font-size: 1.5rem;
+  box-shadow: 0 0 14px rgba(155, 109, 255, 0.16);
+}
+
+.progress-track {
+  height: 10px;
+  overflow: hidden;
+  background: rgba(128, 178, 222, 0.18);
+  border: 1px solid rgba(119, 209, 255, 0.14);
+  border-radius: 999px;
+  margin: 0.8rem 0 0.55rem;
+}
+
+.progress-track span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--hero-cyan), var(--plasma-purple), var(--energy-gold));
+  border-radius: inherit;
+  box-shadow: 0 0 12px var(--hero-cyan);
+}
+
+.progress-card p {
+  font-size: 0.83rem;
+  margin-bottom: 0.4rem;
+}
+
+.humi-tip-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: linear-gradient(135deg, rgba(49, 62, 103, 0.96), rgba(41, 31, 76, 0.97));
+  border-color: rgba(255, 211, 79, 0.3);
+}
+
+.tip-humi {
+  align-self: center;
+  font-size: 3.8rem;
+  filter: drop-shadow(0 0 9px rgba(57, 220, 255, 0.33));
+}
+
+.humi-tip-card h3 {
+  font-size: 1.25rem;
+}
+
+.humi-tip-card p:not(.eyebrow) {
+  font-size: 0.84rem;
+  margin-bottom: 0.3rem;
+}
+
+/* Game zone & Learning flow */
+.page-header {
+  padding: 1.5rem 0 1.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.page-header p:not(.eyebrow) {
+  max-width: 530px;
+}
+
+.page-humi {
+  font-size: 5rem;
+  filter: drop-shadow(0 0 17px rgba(57, 220, 255, 0.3));
+}
+
+.large-game-grid .game-card-art {
+  height: 175px;
+}
+
+.how-it-works {
+  margin-top: 2rem;
+  padding: 1.6rem;
+  border-radius: 24px;
+  background: linear-gradient(120deg, rgba(21, 68, 113, 0.82), rgba(47, 30, 95, 0.82));
+  border: 1px solid rgba(106, 213, 255, 0.25);
+  box-shadow: var(--soft-shadow);
+  text-align: center;
+}
+
+.how-it-works h2 {
+  font-size: 1.5rem;
+}
+
+.steps-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.8rem;
+  margin-top: 1.1rem;
+}
+
+.steps-row div {
+  position: relative;
+}
+
+.steps-row div:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  right: -12px;
+  top: 12px;
+  color: var(--hero-cyan);
+  font-size: 1.4rem;
+  text-shadow: 0 0 10px var(--hero-cyan);
+}
+
+.steps-row span {
+  width: 35px;
+  height: 35px;
+  display: grid;
+  place-items: center;
+  background: rgba(57, 220, 255, 0.13);
+  color: var(--hero-cyan);
+  border: 1px solid rgba(57, 220, 255, 0.38);
+  border-radius: 50%;
+  margin: 0 auto 0.4rem;
+  box-shadow: 0 0 12px rgba(57, 220, 255, 0.15);
+}
+
+.steps-row p {
+  font-size: 0.84rem;
+  margin: 0;
+}
+
+/* Rewards Lab / Hero styled achievements */
+.reward-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.reward-summary article {
+  padding: 1.25rem;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.reward-summary span {
+  font-size: 2rem;
+  filter: drop-shadow(0 0 7px rgba(255, 211, 79, 0.36));
+}
+
+.reward-summary strong {
+  display: block;
+  font-family: "Baloo 2";
+  font-size: 2rem;
+  color: var(--soft-white);
+}
+
+.reward-summary p {
+  margin: 0;
+  font-size: 0.83rem;
+}
+
+.rewards-layout {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.badge-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.badge {
+  text-align: center;
+  border-radius: 20px;
+  padding: 1.1rem 0.6rem;
+}
+
+.badge-icon {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 0.5rem;
+  font-size: 2rem;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 16px rgba(57, 220, 255, 0.16);
+}
+
+.badge h3 {
+  font-size: 1rem;
+  margin-bottom: 0.15rem;
+}
+
+.badge p {
+  font-size: 0.72rem;
+  margin: 0;
+}
+
+.badge.locked {
+  opacity: 0.45;
+  filter: grayscale(0.7);
+}
+
+.next-unlock {
+  background: linear-gradient(145deg, rgba(83, 52, 154, 0.92), rgba(26, 56, 105, 0.95));
+  border: 1px solid rgba(155, 109, 255, 0.45);
+  border-radius: 23px;
+  padding: 1.5rem;
+  align-self: start;
+  text-align: center;
+  box-shadow: 0 0 22px rgba(155, 109, 255, 0.12), var(--soft-shadow);
+}
+
+.locked-orb {
+  width: 100px;
+  height: 100px;
+  margin: 0.5rem auto 1rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 3rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  box-shadow: 0 0 24px rgba(155, 109, 255, 0.34);
+}
+
+.next-unlock h2 {
+  font-size: 1.45rem;
+}
+
+.next-unlock p:not(.eyebrow) {
+  font-size: 0.86rem;
+}
+
+.next-unlock small {
+  color: var(--muted-blue);
+}
+
+/* Humi's AI Learning Buddy Coach screen */
+.coach-layout {
+  display: grid;
+  grid-template-columns: 1fr 270px;
+  gap: 1.25rem;
+}
+
+.coach-panel {
+  min-height: 650px;
+  padding: 1.5rem;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.coach-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid rgba(115, 210, 255, 0.18);
+}
+
+.coach-avatar {
+  width: 66px;
+  height: 66px;
+  border-radius: 22px;
+  display: grid;
+  place-items: center;
+  font-size: 2.5rem;
+  background: linear-gradient(145deg, rgba(57, 220, 255, 0.23), rgba(155, 109, 255, 0.27));
+  border: 1px solid rgba(57, 220, 255, 0.3);
+  box-shadow: 0 0 17px rgba(57, 220, 255, 0.14);
+}
+
+.coach-top h1 {
+  font-size: 1.85rem;
+  margin: 0;
+}
+
+.online-status {
+  margin: 0.2rem 0 0;
+  font-size: 0.8rem;
+}
+
+.online-status span {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--victory-green);
+  box-shadow: 0 0 8px var(--victory-green);
+}
+
+.chat-log {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.message {
+  max-width: 78%;
+  padding: 0.75rem 0.9rem;
+  border-radius: 16px 16px 16px 4px;
+  background: rgba(57, 220, 255, 0.11);
+  border: 1px solid rgba(57, 220, 255, 0.18);
+  color: var(--soft-white);
+  font-size: 0.91rem;
+  line-height: 1.43;
+  align-self: flex-start;
+}
+
+.message.user {
+  align-self: flex-end;
+  border-radius: 16px 16px 4px 16px;
+  background: linear-gradient(135deg, #6e57e9, #287fc0);
+  border-color: rgba(185, 228, 255, 0.26);
+  color: white;
+}
+
+.message strong {
+  display: block;
+  font-size: 0.71rem;
+  margin-bottom: 0.18rem;
+  opacity: 0.75;
+}
+
+.quick-replies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.5rem 0 0.8rem;
+}
+
+.quick-replies button {
+  border: 1px solid rgba(57, 220, 255, 0.34);
+  color: var(--hero-cyan);
+  background: rgba(57, 220, 255, 0.07);
+  font-size: 0.78rem;
+  padding: 0.48rem 0.65rem;
+  border-radius: 999px;
+}
+
+.quick-replies button:hover {
+  background: rgba(57, 220, 255, 0.17);
+  color: var(--white);
+}
+
+.chat-form {
+  display: flex;
+  gap: 0.5rem;
+  border-top: 1px solid rgba(115, 210, 255, 0.18);
+  padding-top: 0.9rem;
+}
+
+.chat-form input {
+  flex: 1;
+  border: 1px solid rgba(115, 210, 255, 0.28);
+  border-radius: 13px;
+  padding: 0.75rem 0.85rem;
+  background: rgba(5, 18, 37, 0.67);
+  color: var(--soft-white);
+}
+
+.chat-form input::placeholder {
+  color: #7695b7;
+}
+
+.send-button {
+  width: 44px;
+  border: 1px solid rgba(57, 220, 255, 0.5);
+  border-radius: 13px;
+  background: var(--hero-cyan);
+  color: #061324;
+  box-shadow: 0 0 12px rgba(57, 220, 255, 0.34);
+}
+
+.coach-side {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.coach-stat-card {
+  padding: 1.4rem;
+  border-radius: 23px;
+  background: linear-gradient(145deg, rgba(22, 77, 124, 0.94), rgba(64, 35, 116, 0.95));
+  border: 1px solid rgba(57, 220, 255, 0.25);
+  box-shadow: var(--soft-shadow);
+}
+
+.coach-stat-card > span {
+  font-size: 2.7rem;
+  filter: drop-shadow(0 0 8px rgba(255, 211, 79, 0.35));
+}
+
+.coach-stat-card h3 {
+  font-size: 1.35rem;
+}
+
+.coach-stat-card p:not(.eyebrow) {
+  font-size: 0.84rem;
+}
+
+.coach-stat-card.mini {
+  background: linear-gradient(145deg, rgba(106, 51, 95, 0.94), rgba(92, 45, 30, 0.95));
+  border-color: rgba(255, 158, 84, 0.3);
+}
+
+.coach-stat-card .secondary-button {
+  width: 100%;
+  margin-top: 0.3rem;
+}
+
+/* Shared Game Screen */
+.game-screen {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.game-topbar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  margin-bottom: 1.3rem;
+}
+
+.back-button {
+  justify-self: start;
+  border: 1px solid rgba(57, 220, 255, 0.24);
+  border-radius: 10px;
+  background: rgba(57, 220, 255, 0.06);
+  color: var(--hero-cyan);
+  padding: 0.42rem 0.62rem;
+  font-weight: 900;
+}
+
+.back-button:hover {
+  background: rgba(57, 220, 255, 0.16);
+  color: var(--white);
+}
+
+.game-title {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.game-title h1 {
+  font-size: 1.65rem;
+  margin: 0;
+}
+
+.game-title span {
+  font-size: 1.6rem;
+  filter: drop-shadow(0 0 7px rgba(255, 211, 79, 0.36));
+}
+
+.game-stats {
+  justify-self: end;
+  display: flex;
+  gap: 0.65rem;
+}
+
+.game-stats span {
+  padding: 0.48rem 0.65rem;
+  border-radius: 12px;
+  color: var(--muted-blue);
+  font-size: 0.82rem;
+}
+
+.memory-game-wrap,
+.quiz-wrap,
+.catch-wrap {
+  width: 100%;
+  max-width: 900px;
+  padding: clamp(1.1rem, 3vw, 2rem);
+  border-radius: 28px;
+}
+
+/* Humi's Memory Glitch Game */
+.memory-intro {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.memory-intro h2 {
+  font-size: 1.5rem;
+}
+
+.memory-intro p:not(.eyebrow) {
+  font-size: 0.88rem;
+}
+
+.game-mini-humi {
+  font-size: 4rem;
+  align-self: center;
+  filter: drop-shadow(0 0 12px rgba(57, 220, 255, 0.34));
+}
+
+/* Game board styled like a glowing iron man's power-core puzzle station */
+.memory-board {
+  max-width: 610px;
+  margin: 1.25rem auto;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.8rem;
+  perspective: 1000px;
+  border-radius: 24px;
+  background: radial-gradient(circle at center, rgba(57, 220, 255, 0.1), transparent 62%), rgba(5, 17, 35, 0.68);
+  border: 1px solid rgba(57, 220, 255, 0.16);
+}
+
+/* Matching game flip-card button */
+.memory-card-tile {
+  aspect-ratio: 1 / 1;
+  border: 0;
+  border-radius: 17px;
+  background: none;
+  padding: 0;
+  perspective: 600px;
+}
+
+.memory-card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.45s ease;
+}
+
+.memory-card-tile.flipped .memory-card-inner,
+.memory-card-tile.matched .memory-card-inner {
+  transform: rotateY(180deg);
+}
+
+.memory-card-face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  backface-visibility: hidden;
+  border-radius: 17px;
+}
+
+.memory-card-back {
+  background: radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.22), transparent 18%), linear-gradient(145deg, #1c72c7, #4b2d9b);
+  color: white;
+  border: 2px solid rgba(118, 232, 255, 0.7);
+  box-shadow: inset 0 0 18px rgba(57, 220, 255, 0.25), 0 0 14px rgba(57, 220, 255, 0.22);
+  font-size: 2rem;
+}
+
+.memory-card-front {
+  transform: rotateY(180deg);
+  background: linear-gradient(145deg, #dffaff, #a6d9ff);
+  border: 2px solid var(--hero-cyan);
+  color: #09204a;
+  box-shadow: 0 0 16px rgba(57, 220, 255, 0.34);
+  font-size: clamp(1.6rem, 4vw, 2.7rem);
+}
+
+.memory-card-tile.matched .memory-card-front {
+  background: linear-gradient(145deg, #d9ffe9, #79efbb);
+  border-color: var(--victory-green);
+  box-shadow: 0 0 21px rgba(87, 230, 170, 0.6);
+}
+
+.memory-card-tile.hinted .memory-card-inner {
+  transform: rotateY(180deg);
+}
+
+.memory-card-tile.hinted {
+  animation: hint-pulse 0.8s ease 2;
+}
+
+.memory-card-tile.hinted .memory-card-front {
+  background: #fff8d2;
+  border-color: var(--energy-gold);
+}
+
+@keyframes hint-pulse {
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+.memory-footer {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.memory-metric {
+  min-width: 74px;
+  text-align: center;
+}
+
+.memory-metric span {
+  display: block;
+  color: var(--muted-blue);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+}
+
+.memory-metric strong {
+  font-family: "Baloo 2";
+  font-size: 1.35rem;
+  color: var(--energy-gold);
+  text-shadow: 0 0 8px rgba(255, 211, 79, 0.32);
+}
+
+.humi-game-message {
+  background: rgba(155, 109, 255, 0.15);
+  color: #e4d8ff;
+  border: 1px solid rgba(155, 109, 255, 0.3);
+  padding: 0.65rem 0.75rem;
+  border-radius: 13px;
+  font-size: 0.84rem;
+}
+
+.hint-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ThinkQuest Quiz Game */
+.quiz-wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+}
+
+.quiz-humi {
+  position: absolute;
+  right: 6%;
+  top: 18px;
+  font-size: 3.2rem;
+  filter: drop-shadow(0 0 12px rgba(57, 220, 255, 0.34));
+}
+
+.quiz-wrap h2 {
+  max-width: 620px;
+  margin: 0.7rem auto 1.3rem;
+  font-size: clamp(1.45rem, 3vw, 2rem);
+}
+
+.answer-list {
+  display: grid;
+  gap: 0.7rem;
+  text-align: left;
+}
+
+/* Answers look like battle choices on a hero mission screen */
+.answer-button {
+  padding: 0.95rem 1rem;
+  border-radius: 15px;
+  border: 2px solid rgba(119, 209, 255, 0.22);
+  background: rgba(10, 31, 58, 0.82);
+  color: var(--soft-white);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.answer-button:hover:not(:disabled) {
+  background: rgba(57, 220, 255, 0.1);
+  border-color: var(--hero-cyan);
+  box-shadow: 0 0 16px rgba(57, 220, 255, 0.16);
+}
+
+.answer-letter {
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--hero-cyan);
+  background: rgba(57, 220, 255, 0.12);
+  border: 1px solid rgba(57, 220, 255, 0.3);
+  font-size: 0.78rem;
+}
+
+.answer-button.correct {
+  color: #dcfff0;
+  background: rgba(87, 230, 170, 0.13);
+  border-color: var(--victory-green);
+  box-shadow: 0 0 16px rgba(87, 230, 170, 0.2);
+}
+
+.answer-button.wrong {
+  color: #ffe1e6;
+  background: rgba(255, 81, 110, 0.12);
+  border-color: var(--hero-red);
+  box-shadow: 0 0 16px rgba(255, 81, 110, 0.16);
+}
+
+.quiz-feedback {
+  min-height: 35px;
+  margin: 1rem 0;
+  color: var(--muted-blue);
+}
+
+.quiz-feedback.correct {
+  color: var(--victory-green);
+}
+
+.quiz-feedback.wrong {
+  color: #ff9dab;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Catch the knowledge falling-object arcade game */
+.catch-wrap {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.catch-instructions {
+  text-align: center;
+}
+
+.catch-instructions h2 {
+  font-size: 1.65rem;
+}
+
+.catch-instructions p:not(.eyebrow) {
+  font-size: 0.85rem;
+}
+
+/* Catch the knowledge falling-object game area; uses a bright mission-training atmosphere similar to the hero screen */
+.catch-game {
+  height: 410px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 21px;
+  background:
+    radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.33), transparent 25%),
+    linear-gradient(#155f94 0%, #2baee7 52%, #29598a 53%, #123052 100%);
+  border: 1px solid rgba(79, 220, 255, 0.42);
+  box-shadow: inset 0 0 28px rgba(57, 220, 255, 0.14), 0 0 20px rgba(57, 220, 255, 0.08);
+  margin-top: 1rem;
+  outline: none;
+}
+
+.catch-game::before {
+  content: "";
+  position: absolute;
+  width: 130%;
+  height: 65px;
+  background: rgba(57, 220, 255, 0.14);
+  border-radius: 50%;
+  bottom: 95px;
+  left: -10%;
+}
+
+.catch-cloud {
+  position: absolute;
+  color: rgba(235, 252, 255, 0.78);
+  font-size: 4rem;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+}
+
+.cloud-a {
+  top: 20px;
+  left: 8%;
+}
+
+.cloud-b {
+  top: 78px;
+  right: 9%;
+  transform: scale(0.7);
+}
+
+.catch-basket {
+  position: absolute;
+  z-index: 5;
+  bottom: 19px;
+  left: calc(50% - 30px);
+  font-size: 3.6rem;
+  transition: left 0.09s linear;
+  filter: drop-shadow(0 0 8px rgba(255, 211, 79, 0.45)) drop-shadow(0 6px 2px rgba(0, 0, 0, 0.33));
+}
+
+.falling-knowledge {
+  position: absolute;
+  z-index: 4;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: #ecfbff;
+  border: 1px solid rgba(255, 255, 255, 0.86);
+  box-shadow: 0 0 12px rgba(57, 220, 255, 0.28), 0 5px 0 rgba(0, 46, 93, 0.28);
+  font-size: 1.4rem;
+}
+
+.falling-knowledge.bad {
+  background: linear-gradient(145deg, #ff6c7e, #b8214c);
+  color: white;
+  border-color: rgba(255, 189, 199, 0.62);
+  box-shadow: 0 0 14px rgba(255, 81, 110, 0.42), 0 5px 0 rgba(91, 5, 33, 0.28);
+}
+
+.catch-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background: rgba(4, 16, 33, 0.62);
+  backdrop-filter: blur(3px);
+}
+
+.catch-overlay.hidden {
+  display: none;
+}
+
+.catch-overlay > div {
+  width: min(90%, 330px);
+  background: linear-gradient(145deg, #163c68, #102444);
+  border: 1px solid rgba(57, 220, 255, 0.4);
+  border-radius: 24px;
+  padding: 1.5rem;
+  box-shadow: 0 0 24px rgba(57, 220, 255, 0.16), var(--shadow);
+}
+
+.catch-overlay span {
+  font-size: 3.2rem;
+  filter: drop-shadow(0 0 10px rgba(255, 211, 79, 0.4));
+}
+
+.catch-overlay h3 {
+  font-size: 1.45rem;
+  margin: 0.3rem 0;
+}
+
+.catch-overlay p {
+  font-size: 0.84rem;
+}
+
+.catch-controls {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.4rem;
+  align-items: center;
+}
+
+.catch-controls button {
+  width: 52px;
+  height: 45px;
+  background: rgba(57, 220, 255, 0.11);
+  color: var(--hero-cyan);
+  border: 1px solid rgba(57, 220, 255, 0.4);
+  border-radius: 15px;
+  font-size: 1.5rem;
+  box-shadow: inset 0 0 12px rgba(57, 220, 255, 0.08);
+}
+
+.catch-controls button:hover {
+  background: var(--hero-cyan);
+  color: #07111f;
+  box-shadow: 0 0 17px rgba(57, 220, 255, 0.48);
+}
+
+.catch-controls button:active {
+  transform: scale(0.94);
+}
+
+.catch-controls div {
+  min-width: 80px;
+  text-align: center;
+}
+
+.catch-controls span {
+  display: block;
+  font-size: 0.68rem;
+  color: var(--muted-blue);
+  letter-spacing: 0.1em;
+}
+
+.catch-controls strong {
+  font-family: "Baloo 2";
+  font-size: 1.7rem;
+  color: var(--energy-gold);
+  text-shadow: 0 0 10px rgba(255, 211, 79, 0.33);
+}
+
+/* Results Modal & Toast Notifications */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(2, 10, 22, 0.72);
+  backdrop-filter: blur(7px);
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-card {
+  width: min(100%, 465px);
+  position: relative;
+  padding: 2rem;
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(57, 220, 255, 0.15), transparent 33%),
+    linear-gradient(145deg, #193e67, #0c1d39);
+  border: 1px solid rgba(57, 220, 255, 0.42);
+  border-radius: 28px;
+  box-shadow: 0 0 28px rgba(57, 220, 255, 0.18), 0 25px 65px rgba(0, 0, 0, 0.5);
+  animation: modal-pop 0.32s ease both;
+}
+
+.modal-close {
+  position: absolute;
+  right: 13px;
+  top: 10px;
+  background: none;
+  border: 0;
+  color: var(--muted-blue);
+  font-size: 1.7rem;
+}
+
+.modal-close:hover {
+  color: var(--white);
+}
+
+.modal-celebration {
+  font-size: 4rem;
+  animation: float 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 14px rgba(255, 211, 79, 0.4));
+}
+
+.modal-card h2 {
+  margin-bottom: 0.5rem;
+}
+
+.modal-card p:not(.eyebrow) {
+  font-size: 0.9rem;
+}
+
+.result-stats {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.result-stat {
+  padding: 0.6rem 0.8rem;
+  min-width: 72px;
+  background: rgba(57, 220, 255, 0.09);
+  border: 1px solid rgba(57, 220, 255, 0.18);
+  border-radius: 13px;
+}
+
+.result-stat strong {
+  display: block;
+  font-family: "Baloo 2";
+  font-size: 1.25rem;
+  color: var(--soft-white);
+}
+
+.result-stat span {
+  font-size: 0.67rem;
+  color: var(--muted-blue);
+}
+
+.earned-xp {
+  display: inline-block;
+  background: rgba(255, 211, 79, 0.16);
+  border: 1px solid rgba(255, 211, 79, 0.4);
+  color: #fff0a3;
+  padding: 0.55rem 0.8rem;
+  border-radius: 999px;
+  box-shadow: 0 0 14px rgba(255, 211, 79, 0.17);
+  font-weight: 900;
+}
+
+.badge-earned {
+  color: #d9c9ff !important;
+  font-size: 0.82rem !important;
+  margin: 0.65rem 0 1rem !important;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.toast {
+  position: fixed;
+  z-index: 200;
+  bottom: 24px;
+  left: 50%;
+  max-width: calc(100% - 2rem);
+  transform: translate(-50%, 90px);
+  padding: 0.8rem 1.1rem;
+  background: #102b50;
+  border: 1px solid rgba(57, 220, 255, 0.36);
+  color: var(--soft-white);
+  border-radius: 13px;
+  box-shadow: 0 0 20px rgba(57, 220, 255, 0.16), var(--shadow);
+  transition: transform 0.3s ease;
+  font-size: 0.88rem;
+}
+
+.toast.show {
+  transform: translate(-50%, 0);
+}
+
+@keyframes modal-pop {
+  from {
+    transform: scale(0.86);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Used for labels with screen readers to read */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Mobile Responsiveness - Tablet layout */
+@media (max-width: 900px) {
+  .desktop-nav {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: block;
+  }
+
+  .mobile-nav {
+    position: fixed;
+    top: 78px;
+    left: 0;
+    right: 0;
+    z-index: 25;
+    padding: 0.6rem;
+    box-shadow: var(--soft-shadow);
+  }
+
+  .mobile-nav.open {
+    display: grid;
+  }
+
+  .mobile-nav button {
+    text-align: left;
+    padding: 0.85rem 1rem;
+    border: 0;
+    background: none;
+    border-radius: 10px;
+  }
+
+  .mobile-nav button:hover {
+    background: rgba(57, 220, 255, 0.1);
+  }
+
+  .dashboard-hero {
+    grid-template-columns: 1fr 0.55fr;
+    min-height: auto;
+  }
+
+  .game-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .game-card:last-child {
+    grid-column: span 2;
+  }
+
+  .dashboard-lower,
+  .coach-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .coach-side {
+    flex-direction: row;
+  }
+
+  .coach-stat-card {
+    flex: 1;
+  }
+
+  .rewards-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .next-unlock {
+    max-width: 500px;
+  }
+
+  .game-card-art {
+    height: 170px;
+  }
+}
+
+/* Mobile Responsiveness - Phone Layout */
+@media (max-width: 640px) {
+  .topbar {
+    height: 67px;
+    padding: 0 0.8rem;
+    gap: 0.45rem;
+  }
+
+  .mobile-nav {
+    top: 67px;
+  }
+
+  .brand {
+    font-size: 1.08rem;
+  }
+
+  .brand-bot {
+    font-size: 1.35rem;
+  }
+
+  .streak-chip,
+  .xp-chip {
+    padding: 0.4rem 0.48rem;
+    gap: 0.18rem;
+  }
+
+  .streak-text,
+  .xp-text {
+    display: none;
+  }
+
+  .icon-button {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: grid;
+    place-items: center;
+  }
+
+  .avatar-button {
+    width: 34px;
+    height: 34px;
+  }
+
+  .topbar-actions {
+    gap: 0.35rem;
+  }
+
+  main {
+    padding: 1rem 0.8rem 3rem;
+  }
+
+  .dashboard-hero {
+    min-height: 300px;
+    grid-template-columns: 1fr;
+    padding: 1.4rem;
+  }
+
+  .humi-stage {
+    position: absolute;
+    width: 150px;
+    height: 160px;
+    right: -8px;
+    bottom: -10px;
+    opacity: 0.58;
+  }
+
+  .humi {
+    left: 20px;
+    top: 12px;
+    transform: scale(0.8);
+  }
+
+  .humi-large {
+    transform: scale(0.8);
+  }
+
+  .speech-bubble,
+  .spark {
+    display: none;
+  }
+
+  .hero-copy {
+    max-width: 70%;
+  }
+
+  .hero-message {
+    font-size: 0.92rem;
+  }
+
+  .hero-actions {
+    display: grid;
+  }
+
+  .hero-actions button {
+    text-align: center;
+  }
+
+  .daily-mission-card {
+    padding: 1rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .mission-icon {
+    flex-basis: 48px;
+    width: 48px;
+    height: 48px;
+    font-size: 1.4rem;
+  }
+
+  .mission-content {
+    flex-basis: calc(100% - 64px);
+  }
+
+  .mission-content h2 {
+    font-size: 1.14rem;
+  }
+
+  .mission-meta {
+    font-size: 0.68rem;
+    gap: 0.45rem;
+  }
+
+  .daily-mission-card .primary-button {
+    width: 100%;
+  }
+
+  .section-heading {
+    margin-top: 2rem;
+  }
+
+  .section-heading .text-button {
+    font-size: 0.78rem;
+  }
+
+  .game-grid,
+  .badge-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .game-card:last-child {
+    grid-column: auto;
+  }
+
+  .game-card {
+    display: grid;
+    grid-template-columns: 115px 1fr;
+  }
+
+  .game-card-art {
+    height: auto;
+    min-height: 145px;
+  }
+
+  .game-card-body {
+    padding: 0.9rem;
+  }
+
+  .game-card-body h3 {
+    font-size: 1.16rem;
+  }
+
+  .game-card-body p {
+    min-height: 0;
+    margin-bottom: 0.45rem;
+    font-size: 0.78rem;
+  }
+
+  .game-card-footer {
+    font-size: 0.72rem;
+  }
+
+  .mini-cards {
+    grid-template-columns: repeat(2, 35px);
+    gap: 5px;
+  }
+
+  .mini-cards span {
+    height: 35px;
+    font-size: 1rem;
+  }
+
+  .brain {
+    font-size: 3.5rem;
+  }
+
+  .question-orb {
+    transform: scale(0.65);
+    right: 6%;
+    bottom: 18px;
+  }
+
+  .basket {
+    font-size: 3.3rem;
+  }
+
+  .dashboard-lower {
+    gap: 0.8rem;
+  }
+
+  .humi-tip-card {
+    padding: 1rem;
+  }
+
+  .tip-humi {
+    font-size: 2.7rem;
+  }
+
+  .page-header {
+    padding: 0.7rem 0 1.2rem;
+  }
+
+  .page-humi {
+    font-size: 3.7rem;
+  }
+
+  .large-game-grid .game-card-art {
+    height: auto;
+  }
+
+  .steps-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .steps-row div:nth-child(2)::after,
+  .steps-row div:nth-child(4)::after {
+    display: none;
+  }
+
+  .steps-row div::after {
+    right: -7px;
+  }
+
+  .reward-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .reward-summary article {
+    padding: 0.8rem;
+  }
+
+  .reward-summary strong {
+    font-size: 1.6rem;
+  }
+
+  .coach-panel {
+    min-height: 590px;
+    padding: 1rem;
+  }
+
+  .coach-side {
+    flex-direction: column;
+  }
+
+  .coach-top h1 {
+    font-size: 1.5rem;
+  }
+
+  .message {
+    max-width: 88%;
+  }
+
+  .game-topbar {
+    grid-template-columns: 1fr auto;
+    gap: 0.5rem;
+  }
+
+  .game-title {
+    order: 3;
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+
+  .game-stats {
+    gap: 0.35rem;
+  }
+
+  .game-stats span {
+    font-size: 0.72rem;
+  }
+
+  .back-button span {
+    display: none;
+  }
+
+  .memory-intro {
+    text-align: left;
+    align-items: center;
+  }
+
+  .memory-intro h2 {
+    font-size: 1.25rem;
+  }
+
+  .game-mini-humi {
+    font-size: 2.8rem;
+  }
+
+  .memory-board {
+    gap: 0.45rem;
+    padding: 0.55rem;
+  }
+
+  .memory-card-face {
+    border-radius: 12px;
+  }
+
+  .memory-card-back {
+    font-size: 1.5rem;
+  }
+
+  .memory-footer {
+    gap: 0.45rem;
+  }
+
+  .humi-game-message {
+    flex-basis: 100%;
+    text-align: center;
+  }
+
+  .quiz-humi {
+    display: none;
+  }
+
+  .quiz-wrap {
+    padding: 1.2rem;
+  }
+
+  .quiz-wrap h2 {
+    font-size: 1.4rem;
+  }
+
+  .answer-button {
+    font-size: 0.86rem;
+  }
+
+  .catch-game {
+    height: 360px;
+  }
+
+  .modal-card {
+    padding: 1.6rem 1rem 1.3rem;
+  }
+
+  .modal-actions {
+    flex-direction: column-reverse;
+  }
+
+  .modal-actions button {
+    width: 100%;
+  }
+}
+
+/* External tutorial links in the desktop navigation; educational mission resources that matches the dark Hero Command design */
+.tutorial-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  white-space: nowrap;
+
+  color: var(--hero-cyan);
+  border: 1px solid rgba(57, 220, 255, 0.25);
+  background: rgba(57, 220, 255, 0.06);
+}
+
+/* When user hovers over a tutorial link, it turns a brighter holographic glow */
+.tutorial-link:hover {
+  color: var(--white);
+  background: rgba(57, 220, 255, 0.15);
+  border-color: rgba(57, 220, 255, 0.55);
+  box-shadow: 0 0 14px rgba(57, 220, 255, 0.2);
+}
+
+/* Tutorial links shown in the opened mobile navigation menu */
+.mobile-tutorial-link {
+  display: block;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+
+  color: var(--hero-cyan);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+/* Adds a thin divider before the first mobile tutorial link */
+.mobile-tutorial-link:first-of-type {
+  margin-top: 0.35rem;
+  border-top: 1px solid rgba(57, 220, 255, 0.2);
+}
+
+.mobile-tutorial-link:hover {
+  color: var(--white);
+  background: rgba(57, 220, 255, 0.1);
+}
+
+/* Cosmic Glass Modules Look: these panels stay readable over the galaxy wallpaper while still allowing
+the background colors and stars to appear softly behind them */
+.daily-mission-card,
+.game-card,
+.progress-card,
+.humi-tip-card,
+.reward-summary article,
+.badge,
+.coach-panel,
+.memory-game-wrap,
+.quiz-wrap,
+.catch-wrap,
+.game-stats span {
+  background: linear-gradient(
+    145deg,
+    rgba(18, 47, 83, 0.88),
+    rgba(5, 18, 39, 0.92)
+  );
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(104, 221, 255, 0.3);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 16px 34px rgba(0, 0, 0, 0.42);
+}
+
+/* For mobile browsers that struggle with fixed background images. Keeps the cosmic wallpaper smooth on phones and tablets */
+@media (max-width: 640px) {
+  body {
+    background-attachment: scroll;
+    background-position: center top;
+  }
+}
+
+/* Compact dedicated Game Zone while retaining its separate game-card set */
+#games-screen .page-header {
+  padding: 0.75rem 0 1rem;
+  margin-bottom: 3rem;
+}
+
+#games-screen .large-game-grid {
+  gap: 3rem;
+}
+
+#games-screen .how-it-works {
+  margin-top: 1.25rem;
+  padding: 1.1rem;
+}
+
+#games-screen .how-it-works h2 {
+  font-size: 1.25rem;
+}
+
+/* Keeps non-game screens comfortably centered instead of stretching across the entire main content area */
+#games-screen,
+#rewards-screen,
+#coach-screen {
+  width: 100%;
+  max-width: 1100px;
+  margin-inline: auto;
+}
+
+#coach-screen {
+  max-width: 880px;
+}
+
+.coach-layout {
+  grid-template-columns: minmax(0, 1fr) 240px;
+}
+
+/* Gives the Coach layout a little room below its page entry */
+#coach-screen .coach-layout {
+  margin-top: 0.8rem;
+}
+
+/* Gives space between the main Rewards areas */
+#rewards-screen .reward-summary {
+  margin-bottom: 2rem;
+}
+
+/* Keeps the Rewards badge area from sitting directly under the summary cards */
+#rewards-screen .rewards-layout {
+  margin-top: 1.5rem;
+}
+
+/* Creates clear visual separation if Rewards and Coach are both visible during development / layout testing.*/
+#rewards-screen {
+  margin-bottom: 5rem;
+}
+
+#coach-screen {
+  margin-top: 4rem;
+}
+
+/* Adds breathing room between the Memory Glitch top bar / Exit button and the Memory Glitch game panel */
+#quiz-screen .game-topbar {
+  margin-bottom: 3.5rem;
+}
+
+/* Leaves visible space between each game screen’s top bar / Exit button and the playable game module below it */
+.game-screen .game-topbar + .quiz-wrap,
+.game-screen .game-topbar + .catch-wrap {
+  margin-top: 2.5rem !important;
+}
+
+/* Keeps the small Training Arena preview cards closer together and centered on the Dashboard */
+#dashboard-screen .game-grid:not(.large-game-grid) {
+  display: grid;
+  grid-column: auto;
+  width: min(100%, 1050px);
+  margin-inline: auto;
+  gap: 3rem;
+}
+
+/* Dashboard Training Arena: shows all three preview cards in one centered row on desktop */
+@media (min-width: 901px) {
+  #dashboard-screen .game-grid:not(.large-game-grid) {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: min(100%, 1050px);
+    margin-inline: auto;
+    gap: 1rem;
+  }
+
+  #dashboard-screen .game-grid:not(.large-game-grid) .game-card:last-child {
+    display: block;
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 900px) and (min-width: 641px) {
+  #dashboard-screen .game-grid:not(.large-game-grid) .game-card:last-child {
+    grid-column: 1 / -1;
+    width: min(100%, 460px);
+    justify-self: center;
+  }
+}
+
+/* Dashboard ThinkQuest card: keep the brain, gold question orb, and star inside the card-art panel so they cannot overlap the Catch the Knowledge card */
+#dashboard-screen .thinkquest-card {
+  position: relative;
+  overflow: hidden;
+}
+
+#dashboard-screen .thinkquest-card .game-card-art {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 160px;
+  min-height: 160px;
+  overflow: hidden;
+}
+
+#dashboard-screen .thinkquest-card .brain {
+  position: relative;
+  z-index: 1;
+  display: block;
+  max-width: 100%;
+}
+
+#dashboard-screen .thinkquest-card .question-orb {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  z-index: 2;
+}
+
+#dashboard-screen .thinkquest-card .art-star {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+}
+
+/* Keeps all three small Training Arena card art panels contained */
+#dashboard-screen .game-card {
+  position: relative;
+  overflow: hidden;
+}
+
+#dashboard-screen .game-card-art {
+  position: relative;
+  overflow: hidden;
+}
+
+/* HuMi Tip controls: outside the card, directly beneath it, compact and vertically stacked */
+.humi-tip-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  margin-top: 0.6rem;
+}
+
+.tip-control-button {
+  width: fit-content;
+  min-width: 118px;
+  padding: 0.32rem 0.65rem;
+  border: 1px solid rgba(57, 220, 255, 0.42);
+  border-radius: 999px;
+  background: rgba(57, 220, 255, 0.08);
+  color: var(--hero-cyan);
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1.1;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+
+.tip-control-button:hover {
+  background: rgba(57, 220, 255, 0.18);
+  color: var(--white);
+  transform: translateY(-1px);
+}
+
+.tip-control-button:focus-visible {
+  outline: 3px solid rgba(57, 220, 255, 0.7);
+  outline-offset: 3px;
+}
+
+/* Dashboard Training Arena: three centered preview cards with contained artwork. Had issues with the artwork outside of the preview cards. */
+.dashboard-game-grid {
+  width: min(100%, 1050px);
+  margin-inline: auto;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.dashboard-game-grid .game-card {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.dashboard-game-grid .game-card-art {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 160px;
+  overflow: hidden;
+}
+
+.dashboard-game-grid .thinkquest-card .brain {
+  position: relative;
+  z-index: 1;
+}
+
+.dashboard-game-grid .thinkquest-card .question-orb,
+.dashboard-game-grid .thinkquest-card .art-star {
+  position: absolute;
+  z-index: 2;
+}
+
+/* Tutorial links below the Dashboard mission buttons. This separate class creates a clear gap from "Launch today's mission" and "Ask HuMi". */
+.hero-tutorial-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+/* Compact tutorial links so they look like resource chips, not full navigation buttons */
+.hero-tutorial-links .tutorial-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid rgba(57, 220, 255, 0.35);
+  border-radius: 10px;
+  background: rgba(57, 220, 255, 0.08);
+  color: var(--hero-cyan);
+  text-decoration: none;
+  font-size: 0.76rem;
+  font-weight: 800;
+  line-height: 1.2;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+
+.hero-tutorial-links .tutorial-link:hover {
+  background: rgba(57, 220, 255, 0.18);
+  color: var(--white);
+  transform: translateY(-1px);
+}
+
+/* Blue Memory Glitch preview artwork */
+.memory-preview-card .game-card-art {
+  background: radial-gradient(
+    circle at 60% 25%,
+    rgba(255, 255, 255, 0.25),
+    transparent 20%
+  ),
+  linear-gradient(135deg, #0eafdb, #173e9d);
+}

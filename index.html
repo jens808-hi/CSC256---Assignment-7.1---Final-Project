@@ -1,0 +1,595 @@
+<!-- 1st tag that specifies document type as HTML5 for HuMAI Academy, ensures that the browser renders it correctly in standard mode -->
+<!Doctype html>
+<!-- 2nd tag that defines the start of the HTML document and specifies the language; English which is automatically added by VS Code -->
+<html lang="en">
+  <!-- 3rd tag that contains metadata information about the document like title, description, and links to resources -->
+<head>
+  <!-- 4th tag that ensures proper coding for the document and proper text rendering; which controls the character set encoding -->
+  <meta charset="UTF-8" />
+  <!-- 5th tag that ensures compatibility with Internet Explorer, contains viewport information, 
+  indicating how the page should be rendered on different devices (screen width & zoom level); for Mobile Responsiveness -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- 6th tag that provides a brief description of the page for search engines and social media -->
+  <meta name="description" content="HuMAI Academy: a playful AI literacy learning experience with HuMi." />
+  <!-- 7th tag that specifies the title of the page that appears in the browser tab -->
+  <title>HuMAI Academy</title>
+  <!-- 8th tag that links to the favicon image for the page, which appears in the browser tab 
+  <link rel="icon" href="favicon.ico" /> -->
+  <!-- 9th tag that links to the external CSS stylesheet for styling the page -->
+  <link rel="stylesheet" href="./styles-hero-command.css" />
+  <!-- 10th tag that links to the external JavaScript file for adding interactivity to the page -->
+  <script type="module" src="app.js"></script>
+<!-- Closing head tag - last line of the head element -->
+</head>
+  <!--11th tag that defines the start of the body element -->
+  <body>
+    <!-- 12th tag that defines the main container for the application, which includes the header, 
+    navigation bar, mobile menu, dashboard, game rewards, HuMi Coach, popups, and every screen on the page -->
+    <div class="app-interface-layer">
+      <!-- Main application container -->
+      <header class="topbar">
+        <!-- 13th tag that defines a button for opening the mobile menu, with an icon and an accessible label -->
+        <button class="icon-button mobile-menu" id="mobileMenuButton" aria-label="Open menu">☰</button>
+        <!-- 14th tag that defines my HuMAI brand logo and link for the application, clicking this will 
+        take the user to the Hero Command dashboard -->
+        <button class="HuMAI" data-route="dashboard" aria-label="Go to HuMAI Academy dashboard">
+          <!-- My brand logo -->
+          <span class="HuMAI-bot">🤖</span>
+          <!-- My brand name with emphasis on "Academy" -->
+          <span>HuMAI <em>Academy</em></span>
+          <!-- My brand subtitle -->
+          <span class="HuMAI-subtitle">AI Literacy for Everyone</span>
+        <!-- Closing button tag for the brand logo and link -->
+        </button>
+          <!-- 15th tag that defines the primary navigation menu for desktop users, with buttons for different routes and an accessible label -->
+          <nav class="desktop-nav" aria-label="Primary navigation">
+            <!-- Navigation links -->
+            <button data-route="dashboard" class="nav-link active">Home</button>
+            <button data-route="games" class="nav-link">Game Zone</button>
+            <button data-route="rewards" class="nav-link">Rewards</button>
+            <button data-route="coach" class="nav-link">Chat with HuMi</button>
+          <!-- Closing nav tag for the primary navigation menu -->
+          </nav>
+        <!-- 16th tag that defines the action buttons for the topbar; XP, streak, sound, and profile controls -->
+        <div class="topbar-actions">
+          <!-- Streak chip -->
+          <div class="streak-chip" title="Hero learning streak"><span>🔥</span><strong id="streakTop">3</strong><span class="streak-text">day streak</span></div>
+          <!-- Experience points chip -->
+          <div class="xp-chip" title="Total Energy XP"><span>⭐</span><strong id="xpTop">420</strong><span class="xp-text">XP</span></div>
+          <!-- Sound toggle button -->
+          <button class="icon-button" id="soundButton" aria-label="Toggle sounds" title="Toggle sounds">🔊</button>
+          <!-- Profile button with avatar -->
+          <button class="avatar-button" id="profileButton" aria-label="Open profile">A</button>
+          <!-- Notification button -->
+          <button class="icon-button" id="notificationButton" aria-label="Open notifications">🔔</button>
+        <!-- Closing div tag for the topbar actions -->
+        </div>
+      <!-- Closing header tag for the topbar -->
+      </header>
+        <!-- 17th tag that defines the mobile navigation menu, with buttons for different routes and an accessible label -->
+        <aside class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+          <!-- Mobile navigation links -->
+          <button data-route="dashboard">🏠 Home</button>
+          <button data-route="games">🎮 Game Zone</button>
+          <button data-route="rewards">🏆 Rewards</button>
+          <button data-route="coach">🤖 Chat with HuMi</button>
+            <!--Navigation link that opens an external tutorial about using JavaScript modules, opens the tutorial in a new tab so the HuMAI Academy
+            page stays open in the current tab (rel="noopener noreferrer" is a standard safety setting for external links) -->
+            <a  class="nav-link tutorial-link" href="https://www.youtube.com/watch?v=7QUhW3KhJiA" target="_blank" rel="noopener noreferrer">📚 Learn JavaScript Modules Tutorial</a>
+            <!-- Navigation link that opens a tutorial about building games with HTML, CSS, and JavaScript -->
+            <a class="nav-link tutorial-link" href="https://www.youtube.com/watch?v=GFO_txvwK_c" target="_blank" rel="noopener noreferrer">🎮 Learn JavaScript Game Tutorial</a>  
+        <!-- Closing aside tag for the mobile navigation menu -->
+      </aside>
+      <!-- 18th tag that defines the main content area of the application, which includes different screens 
+      for the dashboard, games, rewards, and coach. JavaScript hides the inactive screens and shows the active one -->
+        <main>
+          <!-- 19th tag that defines the dashboard screen, which is the default active screen when the application loads, with an accessible label -->
+          <section class="screen active" id="dashboard-screen" aria-labelledby="dashboard-title">
+            <!-- 20th tag that defines the dashboard main mission briefing area -->
+            <div class="dashboard-hero">
+              <!-- 21st tag that defines the hero image -->
+              <div class="hero-copy">
+                <!--22nd tag that defines the hero eyebrow text -->
+                <p class="eyebrow">MISSION CONTROL</p>
+                <!-- 23rd tag that defines the hero title -->
+                <h1 id="dashboard-title" class="hero-greeting"><span class="greeting-text">Hi, <span id="learnerName">Explorer</span>!</h1></span> 
+                <!-- 24th tag that defines the hero image -->
+                <img class="humi-greeting-mascot" src="./images/humi-mascot.png" alt="HuMi the friendly robot guide, waving hello">
+                <!-- 25th tag that defines the hero message -->
+                <p class="hero-message">HuMi has a bright new mission ready for you.</p>
+                <!-- 26th tag that defines the hero action buttons -->
+                <div class="hero-actions">
+                  <!-- 27th tag that defines the primary button for starting today's mission, opens HuMi's Memory Glitch game -->
+                  <button class="primary-button" id="startMissionButton">Launch today’s mission <span>→</span></button>
+                  <!-- 28th tag that defines the secondary button for asking HuMi a question, with an accessible label -->
+                  <button class="secondary-button" data-route="coach">Ask HuMi</button>
+                  <!-- Closing div tag for the hero actions -->
+                </div>
+                 <div class="hero-tutorial-links">
+                  <!--Navigation link that opens an external tutorial about using JavaScript modules, opens the tutorial in a new tab so the HuMAI Academy
+                  page stays open in the current tab (rel="noopener noreferrer" is a standard safety setting for external links) -->
+                  <a  class="tutorial-link" href="https://www.youtube.com/watch?v=7QUhW3KhJiA" target="_blank" rel="noopener noreferrer">📚 Learn JavaScript Modules Tutorial</a>
+                  <!-- Navigation link that opens a tutorial about building games with HTML, CSS, and JavaScript -->
+                  <a class="tutorial-link" href="https://www.youtube.com/watch?v=GFO_txvwK_c" target="_blank" rel="noopener noreferrer">🎮 Learn JavaScript Game Tutorial</a>
+                  </div>
+              <!-- Closing div tag for the hero hero image -->
+              </div>
+              
+                <!-- 29th tag that defines the image of HuMi the robot -->
+                <div class="humi-stage" aria-label="HuMi the friendly robot guide, standing on a futuristic platform with glowing lights and sparkles">
+                <!-- 30th tag that defines the spark elements for the hero image -->
+                <div class="spark spark-one">✦</div><div class="spark spark-two">✧</div><div class="spark spark-three">✦</div>
+                  <!-- 31st tag that defines the HuMi robot character for Humi scattered pieces game, original HuMI robot made from HTML and CSS shapes -->
+                  <div class="humi humi large">
+                    <!-- 32nd tag that defines the antenna element for the HuMi robot character -->
+                    <div class="antenna"><i></i></div>
+                    <!-- 33rd tag that defines the head element for the HuMi robot character -->
+                    <div class="humi-head"><div class="face"><span class="eye">◕</span><span class="eye">◕</span><span class="mouth">⌣</span></div></div>
+                    <!-- 34th tag that defines the body element for the HuMi robot character -->
+                    <div class="humi-body"><span class="core">⚡</span></div>
+                    <!-- 35th tag that defines the left arm element for the HuMi robot character -->
+                    <div class="humi-arm left-arm"></div>
+                    <!-- 36th tag that defines the right arm element for the HuMi robot character -->
+                    <div class="humi-arm right-arm"></div>
+                    <!-- 37th tag that defines the left leg element for the HuMi robot character -->
+                    <div class="humi-leg left-leg"></div>
+                    <!-- 38th tag that defines the right leg element for the HuMi robot character -->
+                    <div class="humi-leg right-leg"></div>
+                  <!-- Closing div tag for the HuMi robot character -->
+                  </div>
+                  <!-- 39th tag that defines the speech bubble for the HuMi robot character -->
+                  <div class="speech-bubble">Ready to power up?<span class="bubble-tail"></span></div>
+                <!-- Closing div tag for the hero stage -->
+                </div>
+              <!-- Closing div tag for the hero section -->
+              </div>
+
+          <!-- 40th tag that defines the daily mission card; launches the Memory Glitch game -->
+          <section class="daily-mission-card" aria-label="Priority hero mission">
+              <!-- 41st tag that defines the mission icon -->
+              <div class="mission-icon">🧩</div>
+              <!-- 42nd tag that defines the mission content -->
+              <div class="mission-content">
+                <!-- 43rd tag that defines the mission eyebrow -->
+                <p class="eyebrow">TODAY’S MISSION</p>
+                <!-- 44th tag that defines the mission title -->
+                <h2>Restore HuMi’s memory circuits</h2>
+                <!-- 45th tag that defines the mission description -->
+                <p>Match the scrambled power memories before the clock runs out.</p>
+                <!-- 46th tag that defines the mission metadata -->
+              <div class="mission-meta"><span>⚡ Easy start</span><span>⏱ About 2 minutes</span><span>⭐ +50 XP</span></div>
+              <!-- 47th tag that defines the mission completion indicator --> 
+              <!-- Closing div tag for the mission content -->  
+              </div>
+                <!-- 48th tag that defines the mission play button to launch the Memory Glitch game -->
+                <button class="primary-button small" id="missionPlayButton">Start mission <span>→</span></button>
+          <!-- Closing section tag for the daily mission card -->
+          </section>
+          
+          <!-- 49th tag that defines the game choice section -->
+          <section class="screen" id="games-screen" aria-labelledby="games-title">
+              <!-- 50th tag that defines the game zone eyebrow and the Hero Training Zone games screen, which displays a grid of available games and 
+              explains how each game contributes to the learning path -->
+              <div class="page-header"><div><p class="eyebrow">PLAY AND LEARN</p><h2 id="games-title">HERO TRAINING ZONE</h2>
+                <p>Choose a challenge and help HuMi power up Hero Command.</p></div>
+                 <div class="page-humi" aria-hidden="true">🤖</div>
+            </div>
+                <!-- 51st tag that defines the button to see all games -->
+                <button class="text-button" data-route="games" type="button">See all games <span>→</span></button>
+              <!-- Closing div tag for the game grid -->
+              </div>
+          <!-- Closing section tag for the game zone -->
+          </section>
+
+            <!-- 52nd tag that defines the Dashboard preview game grid for the three main game cards -->
+            <div class="game-grid dashboard-game-grid">
+              <!-- 53rd tag that defines the game card for ThinkQuest -->
+              <article class="game-card thinkquest-card">
+                <!-- 54th tag that defines the game card image for ThinkQuest -->
+                <div class="game-card-art"><span class="art-star">✦</span><span class="brain">🧠</span><span class="question-orb">?</span></div>
+                <!-- 55th tag that defines the game card body for ThinkQuest -->
+                <div class="game-card-body"><span class="game-tag purple">QUIZ QUEST</span><h3>ThinkQuest</h3><p>Test your super-smart thinking skills.</p>
+                <div class="game-card-footer"><span>⭐ +40 XP</span><button class="round-play" data-game="thinkquest" aria-label="Play ThinkQuest">▶</button></div></div>
+              <!-- Closing article tag for the game card -->
+              </article>
+              <!-- 56th tag that defines the game card for HuMi's Memory Glitch -->
+              <article class="game-card memory-preview-card">
+                <!-- 57th tag that defines the game card image for HuMi's Memory Glitch -->
+                <div class="game-card-art"><div class="mini-cards" aria-hidden="true"><span>⚡</span><span>🤖</span><span>🧠</span><span>🔵</span></div><span class="art-star" aria-hidden="true">✦</span></div>
+                <!-- 58th tag that defines the game card body for HuMi's Memory Glitch -->
+                <div class="game-card-body"><span class="game-tag blue">MATCH GAME</span><h3>HuMi’s Memory Glitch</h3><p>Reconnect HuMi’s scrambled memories.</p>
+                <div class="game-card-footer"><span>⭐ +50 XP</span><button class="round-play" data-game="memory" aria-label="Play HuMi's Memory Glitch">▶</button></div></div>
+              <!-- Closing article tag for the game card -->
+              </article>
+              <!-- 59th tag that defines the game card for Catch the Knowledge -->
+              <article class="game-card catch-card"> 
+                <!-- 60th tag that defines the game card image for Catch the Knowledge -->
+                <div class="game-card-art"><span class="basket">🧺</span><span class="falling-item item-one">💡</span><span class="falling-item item-two">✓</span><span class="falling-item item-three">⭐</span></div>
+                <!-- 61st tag that defines the game card body for Catch the Knowledge -->
+                <div class="game-card-body"><span class="game-tag orange">ARCADE</span><h3>Catch the Knowledge</h3><p>Catch the facts. Dodge the glitches.</p>
+                <div class="game-card-footer"><span>⭐ +35 XP</span><button class="round-play" data-game="catch" aria-label="Play Catch the Knowledge">▶</button></div></div>
+              <!-- Closing article tag for the game card -->
+              </article>
+            <!-- Closing div tag for the game grid -->
+            </div>
+
+          <!-- Dashboard Lower Section - Shows Learner progress and Humi's rotating tip card -->
+          <section class="dashboard-lower">
+            <!-- 62nd tag that defines the Level 2: Pattern Pilot Card - level progress module that updates this card
+            whenever XP increases -->
+            <article class="progress-card">
+              <!-- 63rd tag that defines the progress card top -->
+              <div class="progress-card-top"><div><p class="eyebrow">YOUR HERO PROGRESS PATH</p><h2>Level <span id="levelNumber">2 </span>
+              <span id="levelName">Pattern Pilot</h2></div>
+              <span class="level-icon" id="levelIcon">🚀</span></div>
+              <!-- 64th tag that defines the progress track -->
+              <div class="progress-track">
+                <span id="levelProgress" style="width: 42%"></span>
+              </div>
+              <!-- 65th tag that defines the progress card bottom -->
+              <p><strong id="xpToLevel">180 XP</strong> until you unlock your next level!</p>
+              <!-- 66th tag that defines the current level XP counter -->
+              <p class="level-xp-counter" id="currentLevelXp">120 / 300 XP</p>
+                <!-- 67th tag that defines the rewards button -->
+                <button class="text-button" data-route="rewards" type="button">View hero rewards <span>→</span></button>
+            <!-- Closing article tag for the progress card -->
+            </article>
+            <!-- 68th tag that defines the humi tip card -->
+            <article class="humi-tip-card"><div class="tip-humi">🤖</div><div><p class="eyebrow">HUMI’S HERO TIP OF THE DAY</p>
+              <!-- Tip content -->
+              <h3>Great thinkers check their clues.</h3><p>When you learn something new, ask: “Where did this information come from?”</p>
+              <!-- Tip description -->
+              <p class="level-xp-counter" id="humiTipDescription"><h4><strong>Fact Checking</strong></h4></p>
+              <!-- Tip counter -->
+              <p class="level-xp-counter" id="humiTipCounter">Tip 1 of 20</p>
+              <!-- Tip details -->
+              <p class="level-xp-counter" id="humiTipDetails">Verify information from multiple sources to ensure accuracy.</p>
+                <!-- Tip controls - buttons that let you rotate throught 20 local demo script tips -->
+                <div class="humi-tip-controls">
+                  <!-- Tell me more button in Humi's tip card -->
+                <div class="text-button" data-route="coach">Tell me more? Click on the buttons below <span>⤵ </span></div></div></article>
+                  <!-- Previous tip button -->
+                  <button class="secondary-button" id="previousTipButton" aria-label="Previous tip">⏮ Previous</button>
+                  <!-- Next tip button -->
+                  <button class="secondary-button" id="nextTipButton" aria-label="Next tip">Next ⏭</button>
+                  <!-- Random tip button -->
+                  <button class="secondary-button" id="randomTipButton" aria-label="Random tip">🎲 Random</button>
+                <!-- Closing div tag for the humi tip controls -->
+                </div>
+          <!-- Closing section tag for the dashboard lower section -->
+          </section>
+            
+          <!-- 72nd tag that defines the how it works section -->
+          <section class="how-it-works"><h2>Every mission powers your hero progress</h2>
+            <!-- Steps -->
+            <div class="steps-row">
+              <!--Steps 1-4 -->
+              <div><span>1</span><p>Play a mission</p></div>
+              <div><span>2</span><p>Learn from feedback</p></div>
+              <div><span>3</span><p>Earn XP and badges</p></div>
+              <div><span>4</span><p>Unlock new challenges</p></div>
+            <!-- Closing div tag for steps -->
+            </div>
+          <!-- Closing section tag for the games screen -->
+          </section>
+
+          <!-- 73rd tag that defines the Hero Rewards screen, which displays the user's collection 
+          of rewards, including total XP, day streak, badges earned, and games played -->
+          <section class="screen" id="rewards-screen" aria-labelledby="rewards-title">
+            <!-- 74th tag that defines the page header for the rewards screen -->
+            <div class="page-header"><div>
+              <p class="eyebrow">HALL OF HERO ACHIEVEMENTS</p>
+              <h2 id="rewards-title">Hero Rewards</h2>
+              <p>Every mission helps you unlock something awesome.</p></div>
+              <div class="page-humi">🏆</div>
+            <!-- Closing div tag for page header -->
+            </div>
+            <!-- 75th tag that defines the reward summary -->
+            <div class="reward-summary">
+              <!--Total Xp content -->
+              <article><span>⭐</span><strong id="rewardXp">420</strong><p>Total XP</p></article>
+              <!--Day Streak content-->
+              <article><span>🔥</span><strong id="rewardStreak">3</strong><p>Day streak</p></article>
+              <!-- Badges earned content -->
+              <article><span>🏅</span><strong id="badgeCount">2</strong><p>Badges earned</p></article>
+              <!-- Games played content-->
+              <article><span>🎮</span><strong id="gamesPlayed">0</strong><p>Games played</p></article></div>
+            <!-- 76th tag that defines the rewards layout -->
+            <div class="rewards-layout">
+              <!-- Hero Rewards Screen section -->
+              <section>
+                <!-- Section heading -->
+                <div class="section-heading simple">
+                  <!-- Rewards layout area-->
+                  <div>
+                    <!-- Badge Collection area -->
+                    <p class="eyebrow">BADGE COLLECTION</p><h2>Your hero badges</h2></div></div><div class="badge-grid" id="badgeGrid">
+                  <!-- Closing div tag for rewards layout --> 
+                  </div>
+              <!-- Closing section tag for Hero Rewards screen -->
+              </section>
+                <!-- Next badge to unlock -->
+                <span class="next-unlock"><p class="eyebrow">NEXT UNLOCK</p>
+                  <!-- Locked badge -->
+                  <div class="locked-orb">✨</div><h2>Data Detective</h2><p>Play ThinkQuest two more times to unlock this badge.</p>
+                  <!-- Mission Progress track -->
+                  <div class="progress-track"><span style="width: 40%"></span></div><small>2 of 5 quiz missions complete</small></span>
+                <!-- Closing aside tag for the badge area -->
+                </aside>
+              <!-- Closing div tag for badge area-->
+              </div>
+          <!-- Closing section tag for the rewards screen -->
+          </section>
+
+          <!-- 77th tag that defines the Humi Hero Support, offline coach chat screen;
+          connects to external humi-coach.js file with pre-written responses -->
+          <section class="screen" id="coach-screen" aria-labelledby="coach-title">
+              <!-- 78th tag that defines the coach layout -->
+              <div class="coach-layout"><section class="coach-panel"><div class="coach-top"><div class="coach-avatar">🤖</div>
+                <!-- Chat layout -->
+                <div>
+                  <!-- HuMi Coaching Chat Support -->
+                  <p class="eyebrow">YOUR HERO LEARNING BUDDY</p>
+                  <!--Coach title for chat -->
+                  <h1 id="coach-title">Hero Support Chat with HuMi</h1>
+                  <!-- Online status - HuMi standby-->
+                  <p class="online-status"><span></span> HuMi is ready to help</p>
+                <!-- Closing coach layout-->
+                </div>
+              <!-- Closing coach screen -->
+              </div>
+            <!-- JavaScript adds chat messages here -->
+            <div class="chat-log" id="chatLog" aria-live="polite"></div>
+            <!-- Quick prompts for offline chat-->
+            <div class="quick-replies" id="quickReplies">
+              <button>What should I play next?</button>
+              <button>Give me a learning tip</button>
+              <button>Explain AI</button>
+            <!-- Closing quick prompts area -->
+            </div>
+            <!-- The chat form that sends the learner's message to humi-coach.js external file -->
+            <form class="chat-form" id="chatForm">
+            <!--Message HuMi label -->
+            <label class="sr-only" for="chatInput">Message HuMi</label>
+            <!-- Humi coach chat user input -->
+            <input id="chatInput" autocomplete="off" maxlength="240" placeholder="Ask HuMi a question..." />
+            <!-- Humi coach chat submit button -->
+            <button class="send-button" type="submit" aria-label="Send message">➤</button>
+          <!-- Closing form tag -->
+          </form>
+            <!-- Closing section tag -->
+            </section>
+              <!-- Aside tag for Coaching stat card-->
+              <aside class="coach-side">
+                <!-- Coach Stat card -->
+                <article class="coach-stat-card"><span>🎯</span>
+                  <!-- eyebrow for the stat card -->
+                  <p class="eyebrow">TODAY’S FOCUS</p><h3>Pattern power</h3>
+                  <!-- Stat card description -->
+                  <p>One Memory Glitch game will help your pattern skills shine.</p>
+                    <!-- Game button -->
+                    <button class="secondary-button" data-game="memory">Try it now</button>
+                <!-- Closing coach stat card -->
+                </article>
+                <!-- Mini coach stat card -->
+                <article class="coach-stat-card mini"><span>💡</span><h3>Ask anything</h3>
+                  <!-- Stat card description -->
+                  <p>HuMi explains tricky ideas in clear, kid-friendly words.</p>
+                <!-- Closing mini coach stat card -->
+                </article>
+              <!-- Closing aside tag -->
+              </aside>
+            <!-- Closing div tag for the coach layout -->
+            </div>
+          <!-- Closing section tag for the coach screen -->
+          </section>
+
+          <!-- 79th tag that defines HuMi's Memory Glitch game screen, which displays the memory match game and its controls, connects to memory-glitch.js that builds the board and runs the game -->
+          <section class="screen game-screen" id="memory-screen" aria-labelledby="memory-title">
+            <!-- 80th tag that defines the game topbar, which displays the game title, score, and time remaining -->
+            <div class="game-topbar">
+              <!-- Exit button -->
+              <button class="back-button" data-route="dashboard">← <span>Exit</span></button>
+            <!-- Game title and icon -->
+            <div class="game-title"><span>🧩</span><h1 id="memory-title">HuMi’s Memory Glitch</h1></div>
+            <!-- Game stats and icon -->
+            <div class="game-stats"><span>⭐ <strong id="memoryScore">0</strong></span><span>⏱ <strong id="memoryTime">01:00</strong></span></div>
+            <!-- Closing div tag for game topbar -->  
+            </div>
+              <!-- 81st tag that defines the memory game wrapper, which contains the game board and controls -->
+              <div class="memory-game-wrap">
+                <!--eyebrow text Memory game intro -->
+                <div class="memory-intro"><div> 
+                  <!--eyebrow text Memory game intro -->
+                  <p class="eyebrow">⚠️ MEMORY ALERT!</p>
+                  <!--Help heading -->
+                  <h2>Help HuMi reconnect matching memories.</h2>
+                  <!--Help text -->
+                  <p>Tap two cards to find a pair. Restore all six power memories!</p>
+                <!--Closing div tag for help text -->
+                </div>
+                <!-- Game character -->
+                <div class="game-mini-humi">🤖</div>
+              <!-- Closing div tag for Memory game board -->
+              </div>
+
+              <!-- memory-glitch.js creates randomized card buttons inside this area -->
+              <div class="memory-board" id="memoryBoard" aria-label="Memory match game board"></div>
+                <!--Memory footer with game metrics and messages-->
+                <div class="memory-footer"><div class="memory-metric"><span>MOVES</span><strong id="memoryMoves">0</strong></div>
+                <!-- Memory matches metric -->
+                <div class="memory-metric"><span>MATCHES</span><strong id="memoryMatches">0 / 6</strong></div>
+                <!-- Game message -->
+                <div class="humi-game-message" id="memoryMessage">🤖 Find the matching power memories!</div>
+                  <!-- Hint button -->
+                  <button class="secondary-button hint-button" id="hintButton">💡 Hint</button>
+                  <!-- Restart button -->
+                  <button class="secondary-button" id="restartMemory">↻ Restart</button>
+                <!-- Closing div tag for memory game footer -->
+                </div>
+              <!-- Closing div tag for memory game wrapper -->
+              </div>
+          <!-- Closing section tag for memory game screen -->
+          </section>
+
+          <!-- 82nd tag that defines the ThinkQuest quiz game screen, which displays the quiz questions and answers, connects to thinkquest.js;
+          contains local questions, checks answers, and scores  -->
+          <section class="screen game-screen" id="thinkquest-screen" aria-labelledby="thinkquest-title">
+            <!-- 83rd tag that defines the game topbar, which displays the game title, score, and question count -->
+            <div class="game-topbar">
+              <!-- back button -->
+              <button class="back-button" data-route="games">← <span>Exit</span></button>
+              <!-- game title -->
+              <div class="game-title"><span>🧠</span><h1 id="thinkquest-title">ThinkQuest</h1></div>
+              <!-- game stats -->
+              <div class="game-stats"><span>⭐ <strong id="quizScore">0</strong></span><span>Question <strong id="questionCount">1 / 5</strong></span></div></div>
+              <!-- 84th tag that defines the quiz wrapper, which contains the quiz question, answer options, and feedback -->
+              <div class="quiz-wrap">
+              <!-- quiz game intro -->
+              <div class="quiz-intro"><div>
+                <!-- quiz eyebrow -->
+                <p class="eyebrow">⚠️ QUIZ ALERT!</p>
+                <!-- quiz heading -->
+                <h2>Test your super-smart thinking skills.</h2>
+                <!-- quiz description -->
+                <p>Answer five questions to help HuMi power up Hero Command.</p>
+              <!-- Closing div tag for quiz intro -->
+              </div>
+              <!-- quiz game character -->
+              <div class="game-mini-humi">🤖</div>
+            <!-- Closing div tag for quiz wrapper -->
+            </div>
+            
+              <!--javascript adds quiz questions and answers here -->
+              <p class="eyebrow">HERO THINKING MISSION</p>
+              <!-- thinkquest.js replaces this with each local question -->
+              <h2 id="quizQuestion">Which clue can help you check whether an AI answer is trustworthy?</h2>
+              <!-- thinkquest.js creates four answer buttons here -->
+            <div class="answer-list" id="answerList"></div>
+              <!-- ThinkQuest quiz feedback appears here after the user chooses an answer -->
+            <div class="quiz-feedback" id="quizFeedback" aria-live="polite"></div>
+              <!-- Next question button -->
+              <button class="primary-button hidden" id="nextQuestionButton">Next question <span>→</span></button>
+            <!--Closing div tag for quiz wrapper -->
+            </div>
+          <!-- Closing section tag for the quiz game screen -->
+          </section>
+
+          <!-- 85th tag that defines the catch game screen, which displays the catch game area and controls
+          catch-knowledge.js runs the falling object arcade game here -->
+          <section class="screen game-screen" id="catch-screen" aria-labelledby="catch-title">
+            <!-- 86th tag that defines the game topbar, which displays the game title, score, and time -->
+            <div class="game-topbar">
+              <!-- back button  -->
+              <button class="back-button" data-route="games">← <span>Exit</span></button>
+                <!--87th tag that defines the game title for the Catch the Knowledge game -->
+                <div class="game-title"><span>🧺</span><h1 id="catch-title">Catch the Knowledge</h1></div>
+                <!-- 88th tag that defines the game stats for the catch score and time -->
+                <div class="game-stats"><span>⭐ <strong id="catchScore">0</strong></span><span>⏱ <strong id="catchTime">00:30</strong></span></div></div>
+                <!-- 89th tag that defines the catch wrapper, which contains the catch instructions, game area, and controls -->
+                <div class="catch-wrap">
+                  <!-- Catch instrustions -->
+                  <div class="catch-instructions">
+                    <div class="game-card-art"><div class="mini-cards"><span>⚡</span><span>🤖</span><span>🧠</span><span>🔵</span></div><span class="art-star">✦</span></div>
+                    <!--Arcade mission eyebrow -->
+                    <p class="eyebrow">ARCADE MISSION</p>
+                    <!-- H2 heading for the mission -->
+                    <h2>Catch the facts. Dodge the glitches!</h2>
+                    <!-- How to use the basket instructions -->
+                    <p>Use the left and right buttons—or arrow keys—to move your knowledge basket.</p>
+                  <!-- Closing div tag for catch instructions -->
+                  </div>
+                  <!-- Arcade module - adds falling helpful items and glitches in this arena -->
+                  <div class="catch-game" id="catchGame" tabindex="0" aria-label="Catch the Knowledge game area">
+                    <!-- Cloud for falling objects -->
+                    <div class="catch-cloud cloud-a">☁️</div>
+                    <!-- Cloud for falling objects -->
+                    <div class="catch-cloud cloud-b">☁️</div>
+                    <!-- JavaScript moves this basket left and right -->
+                    <div class="catch-basket" id="catchBasket">🧺</div>
+                    <!-- Arcade modules - fills this with the Start Game screen -->
+                    <div class="catch-overlay" id="catchOverlay"><div><span>🧺</span>
+                      <!-- h3 heading for catch cloud -->
+                      <h3>Ready to catch knowledge?</h3>
+                      <!-- catch cloud instructions -->
+                      <p>Collect helpful ideas and avoid red glitches.</p>
+                      <!-- Start game button -->
+                      <button class="primary-button" id="startCatchButton">Start game <span>▶</span></button>
+                    <!-- Closing div tag for Catch Game screen -->
+                    </div>
+                  <!-- Closing div tage for Arcade module -->
+                  </div>
+              <!-- Closing div tag for game top bar -->
+              </div>
+                <!-- Catch Game controls -->
+                <div class="catch-controls">
+                  <!-- Catch Game basket button; left -->
+                  <button id="moveLeft" aria-label="Move basket left">←</button>
+                    <!-- Catch score -->
+                    <div><span>SCORE</span><strong id="catchScoreBottom">0</strong></div>
+                  <!-- Catch Game basket button; right -->
+                  <button id="moveRight" aria-label="Move basket right">→</button>
+                <!-- Closing div tag for Catch game controls -->
+                </div>
+            </div>
+          <!-- Closing section tag for the catch game screen -->
+          </section>
+        <!-- 90th tag that defines the main content area -->
+        </main>
+    <!-- Closing div tag for the main application container -->
+    </div>
+
+    <!-- 91st tag that defines the completion preview result modal, which displays the game results and actions;
+    level-progress.js fills this visual only preview after Pattern Pilot -->
+    <div class="modal hidden" id="resultModal" role="dialog" aria-modal="true" aria-labelledby="resultTitle">
+      <!-- Results modal -->
+      <div class="modal-card">
+        <!-- Results modal Close button -->
+        <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+        <!-- Results modal celebratory emoji -->
+        <div class="modal-celebration" id="modalEmoji">🎉</div>
+        <!-- Results modal mission complete eyebrow -->
+        <p class="eyebrow" id="resultEyebrow">MISSION COMPLETE!</p>
+        <!-- Results modal mission complete message title -->
+        <h2 id="resultTitle">Power restored!</h2>
+        <!-- Results modal mission complete message -->
+        <p id="resultText">You did an awesome job helping HuMi.</p>
+        <!-- JavaScript adds game specific stats, such as score and time, here -->
+        <div class="result-stats" id="resultStats"></div>
+        <!-- Earned Xp results -->
+        <div class="earned-xp">+<span id="earnedXp">50</span> XP</div>
+        <!-- Badge earned results -->
+        <p class="badge-earned" id="badgeEarned">🏅 Pattern Pilot badge earned!</p>
+        <!-- Results modal button actions -->
+        <div class="modal-actions">
+          <!-- Results modal game zone button -->
+          <button class="secondary-button" id="modalHome">Game Zone</button>
+          <!-- Results modal play again button -->
+          <button class="primary-button" id="playAgain">Play again <span>↻</span></button>
+        <!-- Closing tag for results modal actions -->
+        </div>
+      <!-- Closing tag for Results modal card -->
+      </div>
+    <!-- Closing tag for completeion results modal -->
+    </div>
+    <!-- Level 2 - Completion Preview Modal: level-progress.js fills this visual-only preview for Demo purposes,
+     after Pattern Pilot. It doesn't actually start future games -->
+    <div class="modal hidden" id="nextGamesModal"></div>
+    <!-- 92nd tag that defines short messages, such as toast notifications, for hints and scores which displays temporary messages to the user -->
+    <div class="toast" id="toast" role="status"></div><br><br>
+    <!-- The audio tag is used by javaScript to play different sounds used throughout my mini game. 
+                JavaScript controls the audio for each event: Question block hit(coin sound), hit #1 (displays name card):
+                plays super mario bros intro song, hit #2 (displays favorite mario game card): plays Mario's "here we go" sound,
+                hit #3 (displays princess peach card): plays Mario's "oki doki" sound-->
+                <audio id="game-audio" preload="auto"></audio>
+                    <!-- The footer tag is a best practice for organizing the footer section of the page; 
+                    things like legal stuff, contact information, disclaimer, copyright -->
+                    <footer>
+                    <!-- The p tag is a paragraph tag, which contains the footer text content of the page -->
+                    <p>&copy; 2026&nbsp;|&nbsp;Created by Jena Kahili |&nbsp;UAT&nbsp;| CSC256 - Designing Website Interfaces &nbsp;| Assignment 7.1: Final Project </p>
+                    <!-- The closing footer tag is the last line of our footer section that closes the footer tag -->
+                    </footer>
+  <!-- Closing body tag for the main content area -->
+  </body>
+<!-- Closing html tag for the entire document -->
+</html>
