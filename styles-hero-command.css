@@ -1129,6 +1129,7 @@ main {
   border-radius: 22px;
   padding: 1.35rem;
   align-items: flex-start;
+  max-width: 550px;
 }
 
 .progress-card-top {
